@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+    <Properties>
+
+
+        <!-- Base logs PATH (override env: LOG_PATH) -->
+        <Property name="LOG_PATH">${LOG_PATH}</Property>
+        <!-- File pattern of archive -->
+        <Property name="ARCHIVE_PATTERN">${LOG_PATH}/archive/app-%d{yyyy-MM-dd}-%i.json.gz</Property>
+        <!-- Default log level (override env -DLOG_LEVEL) -->
+        <Property name="LOG_LEVEL">${LOG_LEVEL:-WARN}</Property>
+
+
+    </Properties>
+
+    <!-- Environment configuration 'dev' -->
+    <SpringProfile name="dev">
+        <Appenders>
+            <Console name="ConsoleDev" target="SYSTEM_OUT">
+                <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            </Console>
+            <RollingFile name="DevFile"
+                         fileName="${LOG_PATH}/dev-app.json"
+                         filePattern="${ARCHIVE_PATTERN}">
+                <JSONLayout complete="true" compact="true">
+                    <KeyValuePair key="traceId" value="$${ctx:traceId}"/>
+                    <KeyValuePair key="spanId"  value="$${ctx:spanId}"/>
+                </JSONLayout>
+                <Policies>
+                    <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                    <SizeBasedTriggeringPolicy size="50 MB"/>
+                </Policies>
+                <DefaultRolloverStrategy max="7" createOnDemand="true"/>
+            </RollingFile>
+        </Appenders>
+        <Loggers>
+            <Root level="DEBUG">
+                <AppenderRef ref="ConsoleDev"/>
+                <AppenderRef ref="DevFile"/>
+            </Root>
+        </Loggers>
+    </SpringProfile>
+
+    <!-- Environment configuration 'prod' -->
+    <SpringProfile name="prod">
+        <Appenders>
+            <Console name="ConsoleProd" target="SYSTEM_OUT">
+                <JSONLayout complete="false" compact="true"/>
+            </Console>
+            <RollingFile name="ProdFile"
+                         fileName="${LOG_PATH}/app.json"
+                         filePattern="${ARCHIVE_PATTERN}">
+                <JSONLayout complete="true" compact="true">
+                    <KeyValuePair key="traceId" value="$${ctx:traceId}"/>
+                    <KeyValuePair key="spanId"  value="$${ctx:spanId}"/>
+                </JSONLayout>
+                <Policies>
+                    <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                    <SizeBasedTriggeringPolicy size="100 MB"/>
+                </Policies>
+                <DefaultRolloverStrategy max="30" createOnDemand="true"/>
+            </RollingFile>
+        </Appenders>
+        <Loggers>
+            <Root level="${LOG_LEVEL}">
+                <AppenderRef ref="ConsoleProd"/>
+                <AppenderRef ref="ProdFile"/>
+            </Root>
+        </Loggers>
+    </SpringProfile>
+
+</Configuration>
