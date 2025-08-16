@@ -183,16 +183,19 @@ classDiagram
       +LocalDateTime createdAt
       +ContactStatus status
   }
-  ENUM ProjectStatus {
+  class ProjectStatus {
+    <<ENUM>>  
     ACTIVE
     ARCHIVED
   }
-  ENUM PropertyStatus {
+  class PropertyStatus {
+    <<ENUM>>  
     AVAILABLE
     RESERVED
     SOLD
   }
-  ENUM ContactStatus {
+  class ContactStatus {
+    <<ENUM>>
     NEW
     VIEWED
     REPLIED
@@ -235,3 +238,4 @@ classDiagram
 “Done is better than perfect”
 “Progress over perfection”
 “Start now, improve later
+
