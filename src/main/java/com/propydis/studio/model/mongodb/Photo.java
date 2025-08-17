@@ -1,4 +1,41 @@
 package com.propydis.studio.model.mongodb;
 
+
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "photo")
 public class Photo {
+    @Id
+    private String id;
+    private String url;
+    private String altText;
+
+    public Photo() {}
+
+    public Photo(String url, String altText) {
+        this.url = url;
+        this.altText = altText;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getAltText() {
+        return altText;
+    }
+
+    public void setAltText(String altText) {
+        this.altText = altText;
+    }
 }
