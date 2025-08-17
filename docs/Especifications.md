@@ -123,7 +123,7 @@ Admin Create, update, delete projects and properties; manage users and contacts.
 
 📦 Package structure
 
-com.propidys.architecture
+com.propydis.architecture
 ├── PropydisApplication.java  # Main class of Spring Boot
 ├── config          # General settings (security, CORS, etc.)
 ├── controller      # Controllers REST
@@ -238,4 +238,5 @@ classDiagram
 “Done is better than perfect”
 “Progress over perfection”
 “Start now, improve later
+
 
