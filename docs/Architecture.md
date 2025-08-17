@@ -1,3 +1,5 @@
+
+'''mermaid
 flowchart LR
   subgraph Frontend[React Vite SPA]
     Index[Index]
@@ -75,5 +77,6 @@ flowchart LR
   Properties --> FetchApi
   Projects --> FetchApi
   Contact --> FetchApi
-
+'''
   click PropCtl "https://your-docs-url.com#properties-controller"
+
