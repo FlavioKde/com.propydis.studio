@@ -1,19 +1,19 @@
-﻿flowchart LR
-  subgraph Frontend[React_Vite_SPA]
+flowchart LR
+  subgraph Frontend[React Vite SPA]
     Index[Index]
-    Properties[Properties_Page]
-    Projects[Projects_Page]
-    Contact[Contact_Page]
-    Admin[Admin_Dashboard]
-    Auth[Auth_Component_Login]
-    FetchApi[API_Client_fetch/axios]
+    Properties[Properties Page]
+    Projects[Projects Page]
+    Contact[Contact Page]
+    Admin[Admin Dashboard]
+    Auth[Auth Component Login]
+    FetchApi[API Client fetch/axios]
   end
 
   subgraph Edge[Security]
-    JWT[JWT Interceptor_Bearer_Token]
+    JWT[JWT Interceptor Bearer Token]
   end
 
-  subgraph Backend[Spring_Boot_Monolith]
+  subgraph Backend[Spring Boot Monolith]
     direction TB
     subgraph Security[security]
       SecCfg[SecurityConfig (Singleton)]
@@ -27,7 +27,7 @@
       CtcCtl[ContactController]
       UserCtl[UserController]
       RoleCtl[RoleController]
-      ExHandler[@ControllerAdvice<br/>GlobalExceptionHandler]
+      ExHandler[GlobalExceptionHandler (@ControllerAdvice)]
     end
 
     subgraph App[service]
@@ -59,23 +59,21 @@
   end
 
   subgraph Databases
-    Mdb[(MongoDB<br/>projects, properties, photos)]
-    Mys[(MySQL<br/>users, roles, contacts)]
+    Mdb[(MongoDB: projects, properties, photos)]
+    Mys[(MySQL: users, roles, contacts)]
   end
 
   Data --> Mdb
   Data --> Mys
 
-  Frontend -->|JSON_REST| JWT
-  JWT -->|Authorization_Bearer| Backend
+  Frontend -->|JSON REST| JWT
+  JWT -->|Authorization Bearer| Backend
 
   Auth --> FetchApi
   FetchApi --> Backend
-  Admin <-->|role_ADMIN| Backend
+  Admin <-->|role ADMIN| Backend
   Properties --> FetchApi
   Projects --> FetchApi
   Contact --> FetchApi
 
-  click PropCtl "#"
-
-
+  click PropCtl "https://your-docs-url.com#properties-controller"
