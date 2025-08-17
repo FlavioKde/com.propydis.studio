@@ -80,4 +80,5 @@ flowchart LR
   Contact --> FetchApi
 
 ```
-  click PropCtl "https://your-docs-url.com#properties-controller"
+ 
+
