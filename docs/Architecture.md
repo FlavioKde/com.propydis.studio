@@ -19,7 +19,7 @@ flowchart LR
   subgraph Backend[Spring Boot Monolith]
     direction TB
     subgraph Security[security]
-      SecCfg[SecurityConfig (Singleton)]
+      SecCfg[SecurityConfig Singleton]
       JwtFilter[JWT Filter (OncePerRequest)]
       AuthSvc[AuthService (Strategy)]
     end
@@ -81,5 +81,6 @@ flowchart LR
 
 ``` 
   click PropCtl "https://your-docs-url.com#properties-controller"
+
 
 
