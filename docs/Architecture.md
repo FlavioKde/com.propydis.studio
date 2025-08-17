@@ -20,8 +20,8 @@ flowchart LR
     direction TB
     subgraph Security[security]
       SecCfg[SecurityConfig Singleton]
-      JwtFilter[JWT Filter (OncePerRequest)]
-      AuthSvc[AuthService (Strategy)]
+      JwtFilter[JWT Filter - OncePerRequest]
+      AuthSvc[AuthService - Strategy]
     end
 
     subgraph Web[controller]
@@ -30,7 +30,7 @@ flowchart LR
       CtcCtl[ContactController]
       UserCtl[UserController]
       RoleCtl[RoleController]
-      ExHandler[GlobalExceptionHandler (@ControllerAdvice)]
+      ExHandler[GlobalExceptionHandler - ControllerAdvice]
     end
 
     subgraph App[service]
@@ -51,7 +51,7 @@ flowchart LR
     end
 
     subgraph Model[model + dto]
-      Entities[(Entities & DTOs)]
+      Entities[Entities and DTOs]
     end
 
     SecCfg --> JwtFilter
@@ -62,8 +62,8 @@ flowchart LR
   end
 
   subgraph Databases
-    Mdb[(MongoDB: projects, properties, photos)]
-    Mys[(MySQL: users, roles, contacts)]
+    Mdb[MongoDB - projects, properties, photos]
+    Mys[MySQL - users, roles, contacts]
   end
 
   Data --> Mdb
@@ -79,8 +79,5 @@ flowchart LR
   Projects --> FetchApi
   Contact --> FetchApi
 
-``` 
+```
   click PropCtl "https://your-docs-url.com#properties-controller"
-
-
-
