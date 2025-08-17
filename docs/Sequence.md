@@ -1,4 +1,7 @@
-﻿sequenceDiagram
+```mermaid﻿
+
+
+sequenceDiagram
   participant R as React Auth
   participant API as FetchApi
   participant SEC as Spring Security + JwtFilter
@@ -20,5 +23,10 @@
   S-->>C: List<PropertyDTO>
   C-->>API: 200 JSON
   API-->>R: render list
+
+
+
+```
+
 
 
