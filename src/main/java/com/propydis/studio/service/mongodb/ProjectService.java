@@ -1,5 +1,6 @@
 package com.propydis.studio.service.mongodb;
 
+import com.propydis.studio.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mongodb.Project;
 import com.propydis.studio.repository.mongodb.ProjectRepository;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,18 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public Project update(Project project) {
-        if (!projectRepository.existsById(project.getId())) {
-            throw new RuntimeException("Project not found");
-        }
+    public Project update(Project project, String id) {
+        Project existing = projectRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "project"));
+
+        existing.setName(project.getName());
+        existing.setDescription(project.getDescription());
+        existing.setPhotos(project.getPhotos());
+
+
         return projectRepository.save(project);
+
+
     }
 
     public List<Project> findAll() {
@@ -32,13 +40,13 @@ public class ProjectService {
 
     public Project findById(String id) {
         return projectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Project not found"));
+                .orElseThrow(() -> new NotFoundByIdException(id, "project"));
     }
 
     public void deleteById(String id) {
-        if(!projectRepository.existsById(id)) {
-            throw new RuntimeException("Project not found");
-        }
-        projectRepository.deleteById(id);
+        Project existing = projectRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "project"));
+
+        projectRepository.delete(existing);
     }
 }

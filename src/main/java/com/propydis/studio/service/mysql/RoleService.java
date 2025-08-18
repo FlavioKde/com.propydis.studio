@@ -1,5 +1,6 @@
 package com.propydis.studio.service.mysql;
 
+import com.propydis.studio.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.Role;
 import com.propydis.studio.repository.mysql.RoleRepository;
 
@@ -17,16 +18,18 @@ public class RoleService {
         return roleRepository.save(role);
     }
 
-    public Role update(Role role) {
-        if(!roleRepository.existsById(role.getId())) {
-            throw new RuntimeException("Role not found");
-        }
-        return roleRepository.save(role);
+    public Role update(Role role, Long id) {
+        Role existing = roleRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "role"));
+
+        existing.setRoleType(role.getRoleType());
+
+        return roleRepository.save(existing);
     }
 
     public Role findById(Long id) {
         return roleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Role not found"));
+                .orElseThrow(() -> new NotFoundByIdException(id, "role"));
     }
 
     public List<Role> findAll() {
@@ -34,9 +37,11 @@ public class RoleService {
     }
 
     public void deleteById(Long id) {
-        if (!roleRepository.existsById(id)) {
-            throw new RuntimeException("Role not found");
-        }
-        roleRepository.deleteById(id);
+        Role existing = roleRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "role"));
+
+        roleRepository.delete(existing);
+
+
     }
 }

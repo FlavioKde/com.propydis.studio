@@ -1,10 +1,13 @@
 package com.propydis.studio.service.mysql;
 
+import com.propydis.studio.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.User;
 import com.propydis.studio.repository.mysql.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserService {
 
     private UserRepository userRepository;
@@ -14,15 +17,23 @@ public class UserService {
     }
 
     public User save(User user) {
-        if (!userRepository.existsById(user.getId())) {
-            throw new RuntimeException("User with id " + user.getId() + " not found");
-        }
+        return userRepository.save(user);
+    }
+
+    public User update(User user, Long id) {
+                User existing = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "user"));
+
+        existing.setUsername(user.getUsername());
+        existing.setEmail(user.getEmail());
+        existing.setRole(user.getRole());
+
         return userRepository.save(user);
     }
 
     public User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundByIdException(id, "user"));
     }
 
     public List<User> findAll() {
@@ -30,10 +41,9 @@ public class UserService {
     }
 
     public void deleteById(Long id) {
-        if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found");
-        }
-        userRepository.deleteById(id);
+        User existing = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "user"));
+        userRepository.delete(existing);
     }
 
 }

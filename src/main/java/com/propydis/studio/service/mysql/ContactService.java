@@ -1,5 +1,6 @@
 package com.propydis.studio.service.mysql;
 
+import com.propydis.studio.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.Contact;
 import com.propydis.studio.repository.mysql.ContactRepository;
 import org.springframework.stereotype.Service;
@@ -19,23 +20,28 @@ public class ContactService {
         return contactRepository.save(contact);
     }
 
-    public Contact update(Contact contact) {
-        if(!contactRepository.existsById(contact.getId())){
-            throw new RuntimeException("Contact not found");
-        }
-        return contactRepository.save(contact);
+    public Contact update(Contact contact, Long id) {
+        Contact existing = contactRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "contact"));
+
+        existing.setFirstName(contact.getFirstName());
+        existing.setLastName(contact.getLastName());
+        existing.setEmail(contact.getEmail());
+        existing.setPhone(contact.getPhone());
+
+        return contactRepository.save(existing);
     }
 
     public Contact findById(Long id) {
         return contactRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Contact not found"));
+                .orElseThrow(() -> new NotFoundByIdException(id, "contact"));
     }
 
-    public void delete(Contact contact) {
-        if (!contactRepository.existsById(contact.getId())){
-            throw new RuntimeException("Contact not found");
-        }
-        contactRepository.delete(contact);
+    public void deleteById(Long id) {
+        Contact existing = contactRepository.findById(id)
+                .orElseThrow(()-> new NotFoundByIdException(id, "contact"));
+
+        contactRepository.delete(existing);
     }
 
 
