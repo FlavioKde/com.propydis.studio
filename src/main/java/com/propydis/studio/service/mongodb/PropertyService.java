@@ -20,13 +20,14 @@ public class PropertyService {
         return propertyRepository.save(property);
     }
 
-    public Property Update(Property property, String id) {
+    public Property update(Property property, String id) {
         Property existing = propertyRepository.findById(id)
                 .orElseThrow(() -> new NotFoundByIdException(id, "property"));
 
         existing.setName(property.getName());
         existing.setDescription(property.getDescription());
         existing.setPhotos(property.getPhotos());
+        existing.setPropertyStatus(property.getPropertyStatus());
 
         return propertyRepository.save(existing);
     }
