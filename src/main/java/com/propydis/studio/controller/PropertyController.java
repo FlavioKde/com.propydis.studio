@@ -50,14 +50,14 @@ public class PropertyController {
             return ResponseEntity.ok(properties);
         }
 
-        @GetMapping("/{id}")
+        @GetMapping("/get/{id}")
         public ResponseEntity<PropertyDTO> getById(@PathVariable String id) {
             Property property = propertyService.findById(id);
 
             return ResponseEntity.ok(PropertyMapper.toDTO(property));
         }
 
-        @GetMapping("/{id}")
+        @DeleteMapping("/delete/{id}")
         public ResponseEntity<Void> deleteById(@PathVariable String id) {
             propertyService.deleteById(id);
 

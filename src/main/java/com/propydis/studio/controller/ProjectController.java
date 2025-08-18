@@ -51,14 +51,14 @@ public class ProjectController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<ProjectDTO> getById(@PathVariable String id) {
         Project project = projectService.findById(id);
 
         return ResponseEntity.ok(ProjectMapper.toDTO(project));
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         projectService.deleteById(id);
 
