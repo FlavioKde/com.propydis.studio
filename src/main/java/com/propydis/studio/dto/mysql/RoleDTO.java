@@ -1,8 +1,7 @@
 package com.propydis.studio.dto.mysql;
 
 import com.propydis.studio.model.mysql.RoleType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 
 public class RoleDTO {
 
@@ -19,9 +18,8 @@ public class RoleDTO {
     }
 
     public RoleType getRoleType() {
-        return roleType;
+            return roleType;
     }
-
     public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
     }

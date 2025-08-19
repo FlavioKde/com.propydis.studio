@@ -2,6 +2,7 @@ package com.propydis.studio.model.mysql;
 
 import jakarta.persistence.*;
 
+
 @Entity
 public class Role {
     @Id
@@ -14,9 +15,16 @@ public class Role {
 
     public Role() {}
 
+    public Role(RoleType roleType) {
+        this.roleType = roleType;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public RoleType getRoleType() {

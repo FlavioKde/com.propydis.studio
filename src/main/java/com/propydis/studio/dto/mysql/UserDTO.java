@@ -8,7 +8,6 @@ public class UserDTO {
     private Long id;
     private String UserName;
     private String email;
-    private String password;
     private List<RoleDTO> role;
 
 
@@ -36,20 +35,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public List<RoleDTO> getRole() {
-        return role;
+            return role;
     }
 
     public void setRole(List<RoleDTO> role) {
         this.role = role;
     }
-
 }

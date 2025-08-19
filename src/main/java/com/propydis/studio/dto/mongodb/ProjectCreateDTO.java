@@ -20,20 +20,24 @@ public class ProjectCreateDTO {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
-    public List<PhotoDTO> getPhotoDTO() {
+
+    public List<PhotoDTO> getPhotosDTO() {
         return photosDTO;
     }
-    public void setPhotoDTO(List<PhotoDTO> photoDTO) {
-        this.photosDTO = photoDTO;
+    public void setPhotosDTO(List<PhotoDTO> photosDTO) {
+        this.photosDTO = photosDTO;
     }
 
 

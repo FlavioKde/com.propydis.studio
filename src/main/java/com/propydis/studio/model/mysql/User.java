@@ -2,6 +2,9 @@ package com.propydis.studio.model.mysql;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class User {
     @Id
@@ -13,21 +16,32 @@ public class User {
     private String email;
     @Column(unique = true, nullable = false)
     private String password;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name = "role_id", nullable = false)
-    private Role role;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
+
+
 
     public User() {}
 
-    public User(String username, String email, String password, Role role) {
+    public User(String username, String email, String password, List<Role> roles) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = new ArrayList<>();
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -54,10 +68,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+            return roles;
     }
-    public void setRole(Role role) {
-        this.role = role;
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

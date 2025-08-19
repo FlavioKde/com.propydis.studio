@@ -13,7 +13,7 @@ public class ProjectMapper {
         project.setName(projectCreateDTO.getName());
         project.setDescription(projectCreateDTO.getDescription());
         project.setPhotos(
-                projectCreateDTO.getPhotoDTO()
+                projectCreateDTO.getPhotosDTO()
                         .stream()
                         .map(PhotoMapper::toEntity)
                         .collect(Collectors.toList())
@@ -27,7 +27,7 @@ public class ProjectMapper {
         projectDTO.setId(project.getId());
         projectDTO.setName(project.getName());
         projectDTO.setDescription(project.getDescription());
-        projectDTO.setPhotoDTO(
+        projectDTO.setPhotosDTO(
                 project.getPhotos().stream()
                         .map(PhotoMapper::toDTO)
                                 .collect(Collectors.toList()));

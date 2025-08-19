@@ -43,6 +43,10 @@ public class Contact {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -87,7 +91,7 @@ public class Contact {
         return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
