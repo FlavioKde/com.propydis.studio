@@ -2,6 +2,7 @@ package com.propydis.studio.service.mysql;
 
 import com.propydis.studio.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.Contact;
+import com.propydis.studio.model.mysql.ContactStatus;
 import com.propydis.studio.repository.mysql.ContactRepository;
 import org.springframework.stereotype.Service;
 
@@ -48,4 +49,15 @@ public class ContactService {
     public List<Contact> findAll() {
         return contactRepository.findAll();
     }
+
+    public Contact reply(Long id, String replyMessage) {
+        Contact contact = contactRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "contact"));
+
+        contact.setReplyMessage(replyMessage);
+        contact.setStatus(ContactStatus.REPLIED);
+
+        return contactRepository.save(contact);
+    }
+
 }

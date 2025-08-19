@@ -24,18 +24,23 @@ public class Contact {
     private String message;
 
     private LocalDateTime createdAt;
+
+    @Column(length = 1000)
+    private String replyMessage;
+
     @Enumerated(EnumType.STRING)
     private ContactStatus status;
 
     public Contact() {}
 
-    public Contact(String firstName, String lastName, String email, String phone, String message, LocalDateTime created_at, ContactStatus status) {
+    public Contact(String firstName, String lastName, String email, String phone, String message, LocalDateTime created_at,String replyMessage, ContactStatus status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.message = message;
         this.createdAt = created_at;
+        this.replyMessage = replyMessage;
         this.status = status;
     }
 
@@ -94,6 +99,15 @@ public class Contact {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public String getReplyMessage() {
+        return replyMessage;
+    }
+
+    public void setReplyMessage(String replyMessage) {
+        this.replyMessage = replyMessage;
+    }
+
 
     public ContactStatus getStatus() {
         return status;

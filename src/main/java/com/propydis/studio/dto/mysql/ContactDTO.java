@@ -13,6 +13,7 @@ public class ContactDTO {
     private String phone;
     private String message;
     private LocalDateTime createdAt;
+    private String replyMessage;
     private ContactStatus contactStatus;
 
     public Long getId() {
@@ -69,6 +70,15 @@ public class ContactDTO {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public String getReplyMessage() {
+        return replyMessage;
+    }
+
+    public void setReplyMessage(String replyMessage) {
+        this.replyMessage = replyMessage;
+    }
+
 
     public ContactStatus getContactStatus() {
         return contactStatus;
