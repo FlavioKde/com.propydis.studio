@@ -1,6 +1,6 @@
 package com.propydis.studio.dto.mongodb;
 
-import com.propydis.studio.model.mongodb.Photo;
+import com.propydis.studio.dto.mongodb.PhotoDTO;
 import com.propydis.studio.model.mongodb.ProjectStatus;
 
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ public class ProjectDTO {
     private String id;
     private String name;
     private String description;
-    private List<Photo> photos;
+    private List<PhotoDTO> photosDTO;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private ProjectStatus projectStatus;
@@ -40,12 +40,11 @@ public class ProjectDTO {
         this.description = description;
     }
 
-    public List<Photo> getPhotos() {
-        return photos;
+    public List<PhotoDTO> getPhotosDTO() {
+        return photosDTO;
     }
-
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
+    public void setPhotoDTO(List<PhotoDTO> photosDTO) {
+        this.photosDTO = photosDTO;
     }
 
     public LocalDateTime getCreatedAt() {

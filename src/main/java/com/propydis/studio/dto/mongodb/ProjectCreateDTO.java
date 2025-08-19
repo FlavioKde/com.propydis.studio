@@ -1,6 +1,6 @@
 package com.propydis.studio.dto.mongodb;
 
-import com.propydis.studio.model.mongodb.Photo;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -15,7 +15,7 @@ public class ProjectCreateDTO {
     @NotBlank(message = "La descripción no puede estar vacia")
     private String description;
 
-    private List<Photo> photos;
+    private List<PhotoDTO> photosDTO;
 
     public String getName() {
         return name;
@@ -29,10 +29,12 @@ public class ProjectCreateDTO {
     public void setDescription(String description) {
         this.description = description;
     }
-    public List<Photo> getPhotos() {
-        return photos;
+    public List<PhotoDTO> getPhotoDTO() {
+        return photosDTO;
     }
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
+    public void setPhotoDTO(List<PhotoDTO> photoDTO) {
+        this.photosDTO = photoDTO;
     }
+
+
 }

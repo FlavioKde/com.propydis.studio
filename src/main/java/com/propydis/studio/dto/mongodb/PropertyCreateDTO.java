@@ -15,7 +15,7 @@ public class PropertyCreateDTO {
     @NotBlank(message = "La descripción es obligatoria")
     private String description;
 
-    private List<Photo> photos;
+    private List<PhotoDTO> photoDTO;
 
     public String getName() {
         return name;
@@ -33,12 +33,12 @@ public class PropertyCreateDTO {
         this.description = description;
     }
 
-    public List<Photo> getPhotos() {
-        return photos;
+    public List<PhotoDTO> getPhotoDTO() {
+        return photoDTO;
     }
 
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
+    public void setPhotoDTO(List<PhotoDTO> photoDTO) {
+        this.photoDTO = photoDTO;
 
     }
 }

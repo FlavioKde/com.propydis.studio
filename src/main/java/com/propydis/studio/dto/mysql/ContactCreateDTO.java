@@ -1,4 +1,4 @@
-package com.propydis.studio.dto.mysql.mapper;
+package com.propydis.studio.dto.mysql;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,11 +8,11 @@ import jakarta.validation.constraints.Size;
 public class ContactCreateDTO {
 
     @NotBlank(message = "No puede quedar sin rellenar el nombre")
-    @Size(max=200, message = "El nombre no puede exceder los 200 caracteres")
+    @Size(max=100, message = "El nombre no puede exceder los 100 caracteres")
     private String firstName;
 
-    @NotBlank(message = "No puede quedar sin rellenar el nombre")
-    @Size(max=200, message = "El nombre no puede exceder los 200 caracteres")
+    @NotBlank(message = "No puede quedar sin rellenar el apellido")
+    @Size(max=100, message = "El apellido no puede exceder los 100 caracteres")
     private String lastName;
 
     @Email(message = "Debe ser un correo válido")

@@ -1,25 +1,10 @@
-package com.propydis.studio.model.mongodb;
+package com.propydis.studio.dto.mongodb;
 
+public class PhotoDTO {
 
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "photo")
-public class Photo {
-    @Id
     private String id;
     private String url;
     private String altText;
-
-    public Photo() {}
-
-    public Photo(String url, String altText) {
-        this.url = url;
-        this.altText = altText;
-    }
-
-
 
     public String getId() {
         return id;

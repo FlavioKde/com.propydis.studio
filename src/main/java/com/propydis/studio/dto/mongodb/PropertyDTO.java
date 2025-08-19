@@ -11,7 +11,7 @@ public class PropertyDTO {
     private String id;
     private String name;
     private String description;
-    private List<Photo> photos;
+    private List<PhotoDTO> photosDTO;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private PropertyStatus propertyStatus;
@@ -26,8 +26,8 @@ public class PropertyDTO {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public List<Photo> getPhotos() { return photos; }
-    public void setPhotos(List<Photo> photos) { this.photos = photos; }
+    public List<PhotoDTO> getPhotosDTO() { return photosDTO; }
+    public void setPhotosDTO(List<PhotoDTO> photosDTO) { this.photosDTO = photosDTO; }
 
     public PropertyStatus getPropertyStatus() { return propertyStatus; }
     public void setPropertyStatus(PropertyStatus propertyStatus) { this.propertyStatus = propertyStatus; }

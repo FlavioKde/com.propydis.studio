@@ -1,4 +1,4 @@
-package com.propydis.studio.dto.mysql.mapper;
+package com.propydis.studio.dto.mysql;
 
 import com.propydis.studio.model.mysql.ContactStatus;
 
