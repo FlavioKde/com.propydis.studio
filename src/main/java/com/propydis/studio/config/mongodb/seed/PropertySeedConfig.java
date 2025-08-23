@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class PropertySeedConfig {
 
     @Bean
-    CommandLineRunner propertySeedDatabase(PropertyRepository propertyRepository) {
+    CommandLineRunner seedDatabase(PropertyRepository propertyRepository) {
         return args -> {
             if (propertyRepository.count() == 0) {
                 Property property1 = new Property();

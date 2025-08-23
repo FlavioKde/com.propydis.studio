@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class ProjectSeedConfig {
 
     @Bean
-    CommandLineRunner projectSeedConfig(ProjectRepository projectRepository) {
+    CommandLineRunner seedConfig(ProjectRepository projectRepository) {
         return args -> {
             if (projectRepository.count() == 0) {
                 Project project1 = new Project();

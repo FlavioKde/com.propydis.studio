@@ -35,3 +35,19 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### config local file
+src/main/resources/application.properties
+
+
+.env
+.env.local
+*.keystore
+
+### Logs ###
+logs/
+*.log
+
+### System ###
+.DS_Store
+Thumbs.db
