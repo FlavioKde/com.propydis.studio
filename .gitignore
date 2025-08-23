@@ -38,11 +38,12 @@ out/
 
 ### config local file
 src/main/resources/application.properties
-
-
-.env
+src/main/resources/application-*.properties
+*.env
 .env.local
+.env.*.local
 *.keystore
+
 
 ### Logs ###
 logs/
