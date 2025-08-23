@@ -52,3 +52,12 @@ logs/
 ### System ###
 .DS_Store
 Thumbs.db
+
+### Security ###
+
+echo "# Security" >> .gitignore
+echo "*.keystore" >> .gitignore
+echo "*.jks" >> .gitignore
+echo "*.p12" >> .gitignore
+echo "*.cert" >> .gitignore
+echo "*.key" >> .gitignore
