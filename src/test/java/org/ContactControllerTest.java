@@ -49,8 +49,8 @@ public class ContactControllerTest {
 
         contactCreateDTO.setFirstName("FirstName");
         contactCreateDTO.setLastName("LastName");
-        contactCreateDTO.setEmail("Email");
-        contactCreateDTO.setPhone("Phone");
+        contactCreateDTO.setEmail("test@example.com");
+        contactCreateDTO.setPhone("1234567890");
         contactCreateDTO.setMessage("Message");
 
 
@@ -71,8 +71,8 @@ public class ContactControllerTest {
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.firstname").value("FirstName"))
                 .andExpect(jsonPath("$.lastname").value("LastName"))
-                .andExpect(jsonPath("$.email").value("Email"))
-                .andExpect(jsonPath("$.phone").value("Phone"))
+                .andExpect(jsonPath("$.email").value("test@example.com"))
+                .andExpect(jsonPath("$.phone").value("1234567890"))
                 .andExpect(jsonPath("$.message").value("Message"))
                 .andExpect(jsonPath("$.replyMessage").value("Message_Reply"))
                 .andExpect(jsonPath("$.contactStatus").value("NEW"));
