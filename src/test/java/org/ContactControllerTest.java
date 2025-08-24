@@ -19,9 +19,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class ContactControllerTest {
@@ -75,7 +74,7 @@ public class ContactControllerTest {
                 .andExpect(jsonPath("$.email").value("test@example.com"))
                 .andExpect(jsonPath("$.phone").value("1234567890"))
                 .andExpect(jsonPath("$.message").value("Message"))
-                .andExpect(jsonPath("$.replyMessage").value("Message_Reply"))
+                .andExpect(jsonPath("$.createdAt").exists())
                 .andExpect(jsonPath("$.contactStatus").value("NEW"));
 
     }
@@ -112,7 +111,76 @@ public class ContactControllerTest {
                 .andExpect(jsonPath("$.phone").value("1234567890"))
                 .andExpect(jsonPath("$.message").value("Updated Message"))
                 .andExpect(jsonPath("$.replyMessage").value("Message_Reply"))
+                .andExpect(jsonPath("$.createdAt").exists())
                 .andExpect(jsonPath("$.contactStatus").value("VIEWED"));
 
+    }
+
+    @Test
+    public void testGetContact() throws Exception {
+        Contact contact = new Contact();
+
+        contact.setId(1L);
+        contact.setFirstName("Flavio");
+        contact.setLastName("Davis");
+        contact.setEmail("flavio@example.com");
+        contact.setPhone("1234567890");
+        contact.setMessage("Message test");
+        contact.setReplyMessage("Message_Reply");
+        contact.setCreatedAt(LocalDateTime.now());
+        contact.setStatus(ContactStatus.VIEWED);
+
+        Mockito.when(contactService.findById(Mockito.anyLong())).thenReturn(contact);
+
+        mockMvc.perform(get("/api/contact/get/{id}", 1L))
+
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.firstname").value("Flavio"))
+                .andExpect(jsonPath("$.lastname").value("Davis"))
+                .andExpect(jsonPath("$.email").value("flavio@example.com"))
+                .andExpect(jsonPath("$.phone").value("1234567890"))
+                .andExpect(jsonPath("$.message").value("Message test"))
+                .andExpect(jsonPath("$.replyMessage").value("Message_Reply"))
+                .andExpect(jsonPath("$.createdAt").exists())
+                .andExpect(jsonPath("$.contactStatus").value("VIEWED"));
+
+    }
+
+
+    @Test
+    public void testReplyContact() throws Exception {
+        Contact contact = new Contact();
+
+        contact.setId(1L);
+        contact.setFirstName("Flavio");
+        contact.setLastName("Davis");
+        contact.setEmail("flavio@example.com");
+        contact.setPhone("1234567890");
+        contact.setMessage("Message test");
+        contact.setReplyMessage("Message_Reply");
+        contact.setCreatedAt(LocalDateTime.now());
+        contact.setStatus(ContactStatus.VIEWED);
+
+        Mockito.when(contactService.reply(Mockito.eq(1L), Mockito.anyString()))
+                .thenAnswer(invocation -> {
+                    Long id = invocation.getArgument(0);
+                    String replyMsg = invocation.getArgument(1);
+
+                    contact.setId(id);
+                    contact.setReplyMessage(replyMsg);
+                    contact.setStatus(ContactStatus.REPLIED);
+
+                    return contact;
+                });
+
+
+        mockMvc.perform(put("/api/contact/reply/{id}", 1L)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content("Respuesta desde test"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.replyMessage").value("Respuesta desde test"))
+                .andExpect(jsonPath("$.contactStatus").value("REPLIED"));
     }
 }

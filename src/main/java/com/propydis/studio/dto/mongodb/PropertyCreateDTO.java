@@ -1,6 +1,5 @@
 package com.propydis.studio.dto.mongodb;
 
-import com.propydis.studio.model.mongodb.Photo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
