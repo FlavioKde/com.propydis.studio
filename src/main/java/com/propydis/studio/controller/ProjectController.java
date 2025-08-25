@@ -1,6 +1,7 @@
 package com.propydis.studio.controller;
 
 
+import com.propydis.studio.config.ApiConfig;
 import com.propydis.studio.dto.mongodb.ProjectCreateDTO;
 import com.propydis.studio.dto.mongodb.ProjectDTO;
 import com.propydis.studio.dto.mongodb.mapper.ProjectMapper;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping(ApiConfig.API_BASE_PATH + "/project")
 public class ProjectController {
 
     private final ProjectService projectService;

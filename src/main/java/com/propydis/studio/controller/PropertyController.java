@@ -1,6 +1,7 @@
 package com.propydis.studio.controller;
 
 
+import com.propydis.studio.config.ApiConfig;
 import com.propydis.studio.dto.mongodb.PropertyCreateDTO;
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/property")
+@RequestMapping(ApiConfig.API_BASE_PATH + "/property")
 public class PropertyController {
 
         private final PropertyService propertyService;

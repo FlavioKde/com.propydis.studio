@@ -1,6 +1,7 @@
 package com.propydis.studio.controller;
 
 
+import com.propydis.studio.config.ApiConfig;
 import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.dto.mysql.mapper.ContactMapper;
@@ -12,7 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/contact")
+@RequestMapping(ApiConfig.API_BASE_PATH + "/contact")
 public class ContactController {
 
     private final ContactService contactService;
