@@ -1,7 +1,9 @@
 package com.propydis.studio.dto.mongodb;
 
-import com.propydis.studio.model.mongodb.Photo;
+
 import com.propydis.studio.model.mongodb.PropertyStatus;
+
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,11 +13,10 @@ public class PropertyDTO {
     private String id;
     private String name;
     private String description;
-    private List<PhotoDTO> photosDTO;
+    private List<PhotoDTO> photos;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private PropertyStatus propertyStatus;
-
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -26,8 +27,8 @@ public class PropertyDTO {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public List<PhotoDTO> getPhotosDTO() { return photosDTO; }
-    public void setPhotosDTO(List<PhotoDTO> photosDTO) { this.photosDTO = photosDTO; }
+    public List<PhotoDTO> getPhotos() { return photos; }
+    public void setPhotos(List<PhotoDTO> photos) { this.photos = photos; }
 
     public PropertyStatus getPropertyStatus() { return propertyStatus; }
     public void setPropertyStatus(PropertyStatus propertyStatus) { this.propertyStatus = propertyStatus; }

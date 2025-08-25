@@ -3,6 +3,7 @@ package com.propydis.studio.dto.mongodb;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyCreateDTO {
@@ -14,30 +15,15 @@ public class PropertyCreateDTO {
     @NotBlank(message = "La descripción es obligatoria")
     private String description;
 
-    private List<PhotoDTO> photoDTO;
+    private List<PhotoDTO> photos = new ArrayList<>();
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public String getDescription() {
-        return description;
-    }
+    public List<PhotoDTO> getPhotos() { return photos; }
+    public void setPhotos(List<PhotoDTO> photos) { this.photos = photos; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<PhotoDTO> getPhotoDTO() {
-        return photoDTO;
-    }
-
-    public void setPhotoDTO(List<PhotoDTO> photoDTO) {
-        this.photoDTO = photoDTO;
-
-    }
 }

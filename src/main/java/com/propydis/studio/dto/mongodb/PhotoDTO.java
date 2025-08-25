@@ -1,10 +1,22 @@
 package com.propydis.studio.dto.mongodb;
 
+
+import lombok.AllArgsConstructor;
+
+
+@AllArgsConstructor
 public class PhotoDTO {
 
     private String id;
     private String url;
     private String altText;
+
+    public PhotoDTO() {}
+
+    public PhotoDTO(String url, String altText) {
+        this.url = url;
+        this.altText = altText;
+    }
 
     public String getId() {
         return id;

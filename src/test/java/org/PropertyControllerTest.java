@@ -53,25 +53,36 @@ public class PropertyControllerTest {
     public void testCreateProperty() throws Exception {
         PropertyCreateDTO propertyCreateDTO = new PropertyCreateDTO();
         propertyCreateDTO.setName("Casa en Palermo");
+
         propertyCreateDTO.setDescription("Excelente casa, con vistas a las vias del tren. Para entrar a vivir");
+
+        propertyCreateDTO.setPhotos(List.of(
+
+                new PhotoDTO("https://via.placeholder.com/300x400", "Imagen de prueba1"),
+                new PhotoDTO("https://via.placeholder.com/250x400", "Imagen de prueba2"),
+                new PhotoDTO("https://via.placeholder.com/300x400", "Imagen de prueba3")
+
+
+        ));
+
+
+
 
         Property property = PropertyMapper.toEntity(propertyCreateDTO);
         property.setId("abc123456");
         property.setCreatedAt(LocalDateTime.now());
         property.setUpdatedAt(LocalDateTime.now());
         property.setPropertyStatus(PropertyStatus.RESERVED);
-        property.setPhotos(List.of(
-                new Photo("https://via.placeholder.com/300x400", "Imagen de prueba1"),
-                new Photo("https://via.placeholder.com/250x400", "Imagen de prueba2"),
-                new Photo("https://via.placeholder.com/300x400", "Imagen de prueba3")
-        ));
+
+
+
 
         Mockito.when(propertyService.save(Mockito.any())).thenReturn(property);
 
         mockMvc.perform(post("/api/property/save")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(propertyCreateDTO)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value("abc123456"))
                 .andExpect(jsonPath("$.name").value("Casa en Palermo"))
                 .andExpect(jsonPath("$.description").value("Excelente casa, con vistas a las vias del tren. Para entrar a vivir"))
