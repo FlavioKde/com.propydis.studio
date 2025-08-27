@@ -16,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -50,6 +51,7 @@ public class PropertyControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
     public void testCreateProperty() throws Exception {
         PropertyCreateDTO propertyCreateDTO = new PropertyCreateDTO();
         propertyCreateDTO.setName("Casa en Palermo");
@@ -79,7 +81,7 @@ public class PropertyControllerTest {
 
         Mockito.when(propertyService.save(Mockito.any())).thenReturn(property);
 
-        mockMvc.perform(post("/api/property/save")
+        mockMvc.perform(post("/api/v0.1/property/save")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(propertyCreateDTO)))
                 .andExpect(status().isCreated())

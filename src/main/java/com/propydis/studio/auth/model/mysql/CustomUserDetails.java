@@ -1,5 +1,6 @@
-package com.propydis.studio.model.mysql;
+package com.propydis.studio.auth.model.mysql;
 
+import com.propydis.studio.model.mysql.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

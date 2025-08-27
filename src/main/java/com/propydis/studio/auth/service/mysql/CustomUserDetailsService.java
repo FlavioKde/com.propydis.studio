@@ -1,12 +1,14 @@
-package com.propydis.studio.service.mysql;
+package com.propydis.studio.auth.service.mysql;
 
-import com.propydis.studio.model.mysql.CustomUserDetails;
+import com.propydis.studio.auth.model.mysql.CustomUserDetails;
 import com.propydis.studio.model.mysql.User;
 import com.propydis.studio.repository.mysql.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;

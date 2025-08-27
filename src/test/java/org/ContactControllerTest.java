@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -44,6 +45,7 @@ public class ContactControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "FirstName", roles = "USER")
     public void testCreateContact() throws Exception {
         ContactCreateDTO contactCreateDTO = new ContactCreateDTO();
 
@@ -64,8 +66,8 @@ public class ContactControllerTest {
         Mockito.when(contactService.save(Mockito.any()))
                 .thenReturn(contact);
 
-        mockMvc.perform(post("/api/contact/save")
-                .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/v0.1/contact/save")
+                        .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(contactCreateDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
@@ -80,6 +82,7 @@ public class ContactControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Flavio", roles = "USER")
     public void testUpdateContact() throws Exception {
         ContactCreateDTO contactCreateDTO = new ContactCreateDTO();
 
@@ -99,8 +102,7 @@ public class ContactControllerTest {
         Mockito.when(contactService.update(Mockito.any(), Mockito.eq(1L)))
                 .thenReturn(contact);
 
-
-        mockMvc.perform(put("/api/contact/{id}", 1L)
+        mockMvc.perform(put("/api/v0.1/contact/{id}",1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(contactCreateDTO)))
                 .andExpect(status().isOk())
@@ -117,6 +119,7 @@ public class ContactControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Flavio", roles = "USER")
     public void testGetContact() throws Exception {
         Contact contact = new Contact();
 
@@ -132,7 +135,7 @@ public class ContactControllerTest {
 
         Mockito.when(contactService.findById(Mockito.anyLong())).thenReturn(contact);
 
-        mockMvc.perform(get("/api/contact/get/{id}", 1L))
+        mockMvc.perform(get("/api/v0.1/contact/get/{id}", 1L))
 
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
@@ -149,6 +152,7 @@ public class ContactControllerTest {
 
 
     @Test
+    @WithMockUser(username = "Flavio", roles = "USER")
     public void testReplyContact() throws Exception {
         Contact contact = new Contact();
 
@@ -175,7 +179,7 @@ public class ContactControllerTest {
                 });
 
 
-        mockMvc.perform(put("/api/contact/reply/{id}", 1L)
+        mockMvc.perform(put("/api/v0.1/contact/reply/{id}", 1L)
                         .contentType(MediaType.TEXT_PLAIN)
                         .content("Respuesta desde test"))
                 .andExpect(status().isOk())
