@@ -24,9 +24,9 @@ public class AuthController {
         @PermitAll
         @PostMapping("/login")
         public ResponseEntity<AuthResponse> login (@RequestBody AuthRequest authRequest){
-
+                System.out.println("hola llego aca1?");
                 String token = authService.authenticate(authRequest.getUsername(), authRequest.getPassword());
-
+                System.out.println("hola llego aca2?");
                 return ResponseEntity.ok(new AuthResponse(token));
         }
 }
