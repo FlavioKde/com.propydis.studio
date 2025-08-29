@@ -12,7 +12,7 @@ public class UserMapper {
     public static User ToEntity(UserCreateDTO userCreateDTO) {
         User user = new User();
 
-        user.setUsername(userCreateDTO.getUserName());
+        user.setUsername(userCreateDTO.getUsername());
         user.setEmail(userCreateDTO.getEmail());
         user.setPassword(userCreateDTO.getPassword());
 
@@ -23,7 +23,7 @@ public class UserMapper {
     public static UserDTO toDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
-        userDTO.setUserName(user.getUsername());
+        userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setRole(user.getRoles().stream()
                 .map(RoleMapper::toDTO)

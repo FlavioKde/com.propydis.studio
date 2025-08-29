@@ -6,7 +6,7 @@ import java.util.List;
 public class UserDTO {
 
     private Long id;
-    private String UserName;
+    private String username;
     private String email;
     private List<RoleDTO> role;
 
@@ -19,12 +19,12 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

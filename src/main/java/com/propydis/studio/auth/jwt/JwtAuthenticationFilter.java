@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.List;
+
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -21,15 +21,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
-
-    private static final List<String> PUBLIC_PATHS = List.of(
-            "/api/v0.1/auth/login",
-            "/swagger-ui.html",
-            "/swagger-ui/",
-            "/v3/api-docs",
-            "/v3/api-docs/",
-            "/swagger-ui/index.html"
-    );
 
     public JwtAuthenticationFilter(JwtService jwtService, UserDetailsService userDetailsService) {
         this.jwtService = jwtService;
@@ -40,29 +31,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        //prueba
-        String path1 = request.getServletPath();
 
-        // 🚨 IMPORTANTE: No interceptar el login
-        if ("/api/v0.1/auth/login".equals(path1)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+        String requestPath = request.getServletPath();
 
-
-
-
-
-        String path = request.getRequestURI();
-        if (isPublicPath(path)) {
-            logger.debug("Ruta pública detectada: {}", path);
+        if (isPublicPath(requestPath)) {
+            logger.debug("Ruta pública detectada: {}", requestPath);
             filterChain.doFilter(request, response);
             return;
         }
 
         final String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            logger.warn("Header Authorization ausente o mal formado en ruta protegida: {}", path);
+            logger.warn("Header Authorization ausente o mal formado en ruta protegida: {}", requestPath);
             filterChain.doFilter(request, response);
             return;
         }
@@ -88,6 +68,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private boolean isPublicPath(String path) {
-        return PUBLIC_PATHS.stream().anyMatch(path::startsWith);
+        return path.equals("/api/v0.1/auth/login")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-resources")
+                || path.startsWith("/webjars")
+                || path.equals("/swagger-ui.html");
     }
 }

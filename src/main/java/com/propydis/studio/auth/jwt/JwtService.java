@@ -2,7 +2,9 @@ package com.propydis.studio.auth.jwt;
 
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,14 @@ import java.util.stream.Collectors;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "jwt-secret";
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;
     private static final long EXPIRATION_MS = 1000 * 60 * 60 * 24;
 
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -36,7 +41,7 @@ public class JwtService {
 
         final String username = extractUsername(token);
 
-        return username.equals(userDetails.getUsername()) && isTokenExpired(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     public String extractUsername(String token) {
