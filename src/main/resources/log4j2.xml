@@ -2,40 +2,33 @@
 <Configuration status="WARN" monitorInterval="30">
 
     <Properties>
-
-
-        <!-- Base logs PATH (override env: LOG_PATH) -->
-        <Property name="LOG_PATH">${LOG_PATH}</Property>
-        <!-- File pattern of archive -->
-        <Property name="ARCHIVE_PATTERN">${LOG_PATH}/archive/app-%d{yyyy-MM-dd}-%i.json.gz</Property>
-        <!-- Default log level (override env -DLOG_LEVEL) -->
-        <Property name="LOG_LEVEL">${LOG_LEVEL:-WARN}</Property>
-
-
+        <Property name="LOG_PATH">${spring:logging.file.path:-logs}</Property>
+        <Property name="LOG_LEVEL">${spring:logging.level.root:-WARN}</Property>
     </Properties>
 
     <!-- Environment configuration 'dev' -->
     <SpringProfile name="dev">
+        <Properties>
+            <Property name="DEV_LOG_PATH">logs</Property>
+            <Property name="DEV_LOG_LEVEL">DEBUG</Property>
+        </Properties>
         <Appenders>
             <Console name="ConsoleDev" target="SYSTEM_OUT">
                 <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             </Console>
             <RollingFile name="DevFile"
-                         fileName="${LOG_PATH}/dev-app.json"
-                         filePattern="${ARCHIVE_PATTERN}">
-                <JSONLayout complete="true" compact="true">
-                    <KeyValuePair key="traceId" value="$${ctx:traceId}"/>
-                    <KeyValuePair key="spanId"  value="$${ctx:spanId}"/>
-                </JSONLayout>
+                         fileName="${DEV_LOG_PATH}/dev-app.json"
+                         filePattern="${DEV_LOG_PATH}/archive/app-%d{yyyy-MM-dd}-%i.json.gz">
+
+                <JSONLayout complete="false" compact="true" eventEol="true"/>
                 <Policies>
                     <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                     <SizeBasedTriggeringPolicy size="50 MB"/>
                 </Policies>
-                <DefaultRolloverStrategy max="7" createOnDemand="true"/>
             </RollingFile>
         </Appenders>
         <Loggers>
-            <Root level="DEBUG">
+            <Root level="${DEV_LOG_LEVEL}">
                 <AppenderRef ref="ConsoleDev"/>
                 <AppenderRef ref="DevFile"/>
             </Root>
@@ -50,16 +43,13 @@
             </Console>
             <RollingFile name="ProdFile"
                          fileName="${LOG_PATH}/app.json"
-                         filePattern="${ARCHIVE_PATTERN}">
-                <JSONLayout complete="true" compact="true">
-                    <KeyValuePair key="traceId" value="$${ctx:traceId}"/>
-                    <KeyValuePair key="spanId"  value="$${ctx:spanId}"/>
-                </JSONLayout>
+                         filePattern="${LOG_PATH}/archive/app-%d{yyyy-MM-dd}-%i.json.gz">
+
+                <JSONLayout complete="false" compact="true" eventEol="true"/>
                 <Policies>
                     <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                     <SizeBasedTriggeringPolicy size="100 MB"/>
                 </Policies>
-                <DefaultRolloverStrategy max="30" createOnDemand="true"/>
             </RollingFile>
         </Appenders>
         <Loggers>

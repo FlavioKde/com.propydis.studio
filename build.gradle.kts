@@ -33,7 +33,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	// Log4j2
@@ -43,6 +42,9 @@ dependencies {
 	// SpringDoc OpenAPI
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
 
+	// Security
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
 	// JWT
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
@@ -50,10 +52,6 @@ dependencies {
 
 	// BD
 	implementation("mysql:mysql-connector-java:8.0.33")
-
-//	implementation("com.mysql:mysql-connector-j:8.1.0")
-	//runtimeOnly("com.mysql:mysql-connector-j")
-
 
 	// Lombok
 	compileOnly("org.projectlombok:lombok")
