@@ -62,8 +62,15 @@ public class WebSecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+
+                        //public login
                         .requestMatchers(HttpMethod.POST, "/api/v0.1/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v0.1/hello").permitAll()
+
+                        //public data
+                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/auth/property").permitAll()
+                        .requestMatchers(HttpMethod.POST,  "/api/v0.1/auth/contact").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/auth/project").permitAll()
+
                         .requestMatchers(
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
@@ -71,6 +78,7 @@ public class WebSecurityConfig {
                                 "/webjars/**",
                                 "/error"
                         ).permitAll()
+                        .requestMatchers("/api/v0.1/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
 
                 )

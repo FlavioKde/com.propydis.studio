@@ -33,13 +33,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String requestPath = request.getServletPath();
-
+        /*
         if (isPublicPath(requestPath)) {
             logger.debug("Ruta pública detectada: {}", requestPath);
             filterChain.doFilter(request, response);
             return;
         }
 
+
+         */
         final String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             logger.warn("Header Authorization ausente o mal formado en ruta protegida: {}", requestPath);
@@ -63,17 +65,55 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 logger.warn("Token inválido para usuario: {}", username);
             }
         }
-
+        //voy a probar, por el metodo de tipo POST ej, or eso lo cambie
+        /*
         filterChain.doFilter(request, response);
-    }
 
+         */
+
+        String method = request.getMethod();
+        String path = request.getServletPath();
+
+        if (isPublicPath(method, path)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
+
+
+    }
+// idem arriba
+
+    /*
     private boolean isPublicPath(String path) {
         return path.equals("/api/v0.1/auth/login")
-                || path.equals("/api/v0.1/hello")
+                || path.equals("/api/v0.1/auth/property")
+                || path.equals("/api/v0.1/auth/project")
+                || path.equals("/api/v0.1/auth/contact")
+
                 || path.startsWith("/swagger-ui")
                 || path.startsWith("/v3/api-docs")
                 || path.startsWith("/swagger-resources")
                 || path.startsWith("/webjars")
                 || path.equals("/swagger-ui.html");
     }
+
+     */
+
+
+    private boolean isPublicPath(String method, String path) {
+        return (method.equals("POST") && path.equals("/api/v0.1/auth/login"))
+                || (method.equals("POST") && path.equals("/api/v0.1/auth/contact"))
+                || (method.equals("GET") && path.equals("/api/v0.1/properties"))
+                || (method.equals("GET") && path.equals("/api/v0.1/projects"))
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-resources")
+                || path.startsWith("/webjars")
+                || path.equals("/swagger-ui.html");
+    }
+
+
+
 }
