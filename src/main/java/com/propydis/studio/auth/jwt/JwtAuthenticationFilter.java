@@ -105,6 +105,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private boolean isPublicPath(String method, String path) {
         return (method.equals("POST") && path.equals("/api/v0.1/auth/login"))
+                || (method.equals("POST") && path.equals("/api/v0.1/auth/contact/save"))
                 || (method.equals("POST") && path.equals("/api/v0.1/auth/contact"))
                 || (method.equals("GET") && path.equals("/api/v0.1/property"))
                 || (method.equals("GET") && path.startsWith("/api/v0.1/property/**"))
