@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(ApiConfig.API_BASE_PATH + "/admin/property")
-@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasRole('ADMIN')")
 public class AdminPropertyController {
 
     private final PropertyService propertyService;

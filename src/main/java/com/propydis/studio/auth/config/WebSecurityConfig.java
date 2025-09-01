@@ -67,9 +67,11 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v0.1/auth/login").permitAll()
 
                         //public data
-                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/auth/property").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/property/getAll").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/property/get/**").permitAll()
                         .requestMatchers(HttpMethod.POST,  "/api/v0.1/auth/contact").permitAll()
-                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/auth/project").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/project/getAll").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/api/v0.1/project/get/**").permitAll()
 
                         .requestMatchers(
                                 "/swagger-ui/**",

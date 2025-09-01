@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -105,8 +106,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private boolean isPublicPath(String method, String path) {
         return (method.equals("POST") && path.equals("/api/v0.1/auth/login"))
                 || (method.equals("POST") && path.equals("/api/v0.1/auth/contact"))
-                || (method.equals("GET") && path.equals("/api/v0.1/properties"))
-                || (method.equals("GET") && path.equals("/api/v0.1/projects"))
+                || (method.equals("GET") && path.equals("/api/v0.1/property"))
+                || (method.equals("GET") && path.startsWith("/api/v0.1/property/**"))
+                || (method.equals("GET") && path.equals("/api/v0.1/project/getAll"))
+                || (method.equals("GET") && path.startsWith("/api/v0.1/project/get/**"))
                 || path.startsWith("/swagger-ui")
                 || path.startsWith("/v3/api-docs")
                 || path.startsWith("/swagger-resources")
