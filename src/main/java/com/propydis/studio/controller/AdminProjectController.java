@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(ApiConfig.API_BASE_PATH + "/admin/project")
-//@PreAuthorize("hasRole('ADMIN')")
 public class AdminProjectController {
 
     private final ProjectService projectService;
@@ -27,6 +26,7 @@ public class AdminProjectController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProjectDTO> create(@Valid @RequestBody ProjectCreateDTO projectCreateDTO) {
         Project project = ProjectMapper.toEntity(projectCreateDTO);
         Project savedProject = projectService.save(project);
@@ -36,6 +36,7 @@ public class AdminProjectController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProjectDTO> updatedProject(@PathVariable String id, @Valid @RequestBody ProjectCreateDTO projectCreateDTO) {
         Project project = ProjectMapper.toEntity(projectCreateDTO);
         Project updated = projectService.update(project, id);
@@ -44,6 +45,7 @@ public class AdminProjectController {
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<ProjectDTO>> getAll() {
         List<ProjectDTO> projects = projectService.findAll()
                 .stream()
@@ -55,6 +57,7 @@ public class AdminProjectController {
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProjectDTO> getById(@PathVariable String id) {
         Project project = projectService.findById(id);
 
@@ -62,6 +65,7 @@ public class AdminProjectController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         projectService.deleteById(id);
 

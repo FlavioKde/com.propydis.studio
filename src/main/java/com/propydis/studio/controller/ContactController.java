@@ -45,12 +45,5 @@ public class ContactController {
         return ResponseEntity.ok(ContactMapper.toDTO(contact));
     }
 
-    @PutMapping("/reply/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ContactDTO> reply(@PathVariable long id, @RequestBody String replyMessage) {
-        Contact contact = contactService.reply(id,replyMessage);
-
-        return ResponseEntity.ok(ContactMapper.toDTO(contact));
-    }
 
 }
