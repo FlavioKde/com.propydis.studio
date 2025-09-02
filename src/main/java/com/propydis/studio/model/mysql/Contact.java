@@ -13,9 +13,9 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, name = "firstName")
+    @Column(nullable = false, name = "first_name")
     private String firstName;
-    @Column(nullable = false, name = "lastName")
+    @Column(nullable = false, name = "last_name")
     private String lastName;
     @Column(unique = true, name = "email")
     private String email;
@@ -23,10 +23,10 @@ public class Contact {
     private String phone;
     @Column(nullable = false, columnDefinition = "TEXT", name = "message")
     private String message;
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(length = 1000, name = "replyMessage")
+    @Column(length = 1000, name = "reply_message")
     private String replyMessage;
 
     @Enumerated(EnumType.STRING)
