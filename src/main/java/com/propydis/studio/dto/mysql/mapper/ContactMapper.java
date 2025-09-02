@@ -10,8 +10,8 @@ public class ContactMapper {
         ContactDTO contactDTO = new ContactDTO();
 
         contactDTO.setId(contact.getId());
-        contactDTO.setFirstname(contact.getFirstName());
-        contactDTO.setLastname(contact.getLastName());
+        contactDTO.setFirstName(contact.getFirstName());
+        contactDTO.setLastName(contact.getLastName());
         contactDTO.setEmail(contact.getEmail());
         contactDTO.setPhone(contact.getPhone());
         contactDTO.setMessage(contact.getMessage());
