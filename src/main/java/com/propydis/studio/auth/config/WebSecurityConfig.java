@@ -69,8 +69,8 @@ public class WebSecurityConfig {
                         //public data
                         .requestMatchers(HttpMethod.GET,  "/api/v0.1/property/getAll").permitAll()
                         .requestMatchers(HttpMethod.GET,  "/api/v0.1/property/get/**").permitAll()
-                        .requestMatchers(HttpMethod.POST,  "/api/v0.1/auth/contact/save").permitAll()
-                        .requestMatchers(HttpMethod.POST,  "/api/v0.1/auth/contact").permitAll()
+                        .requestMatchers(HttpMethod.POST,  "/api/v0.1/contact/save").permitAll()
+                        .requestMatchers(HttpMethod.POST,  "/api/v0.1/contact").permitAll()
                         .requestMatchers(HttpMethod.GET,  "/api/v0.1/project/getAll").permitAll()
                         .requestMatchers(HttpMethod.GET,  "/api/v0.1/project/get/**").permitAll()
 

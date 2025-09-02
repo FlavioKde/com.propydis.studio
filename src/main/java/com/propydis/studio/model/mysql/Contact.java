@@ -13,20 +13,20 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "firstName")
     private String firstName;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "lastName")
     private String lastName;
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     private String email;
-    @Column(unique = true)
+    @Column(unique = true, name = "phone")
     private String phone;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT", name = "message")
     private String message;
-
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
-    @Column(length = 1000)
+    @Column(length = 1000, name = "replyMessage")
     private String replyMessage;
 
     @Enumerated(EnumType.STRING)
