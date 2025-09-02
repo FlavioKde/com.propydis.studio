@@ -2,13 +2,20 @@ package com.propydis.studio.controller;
 
 
 import com.propydis.studio.config.ApiConfig;
+import com.propydis.studio.dto.mongodb.PropertyDTO;
+import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
+import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.dto.mysql.mapper.ContactMapper;
 import com.propydis.studio.model.mysql.Contact;
 import com.propydis.studio.service.mysql.ContactService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(ApiConfig.API_BASE_PATH + "/admin/contact")
@@ -29,4 +36,31 @@ public class AdminContactController {
 
         return ResponseEntity.ok(ContactMapper.toDTO(contact));
     }
+
+    @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<ContactDTO>> getAll() {
+        List<ContactDTO> contactDTO = contactService.findAll()
+                .stream()
+                .map(ContactMapper::toDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(contactDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContactDTO> update(@Valid @RequestBody ContactCreateDTO contactCreateDTO, @PathVariable long id) {
+        Contact contact = ContactMapper.toEntity(contactCreateDTO);
+        Contact  updatedContact = contactService.update(contact,id);
+
+        return ResponseEntity.ok(ContactMapper.toDTO(updatedContact));
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ContactDTO> getById(@PathVariable long id) {
+        Contact contact = contactService.findById(id);
+
+        return ResponseEntity.ok(ContactMapper.toDTO(contact));
+    }
+
 }

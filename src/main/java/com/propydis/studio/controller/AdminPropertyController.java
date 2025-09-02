@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(ApiConfig.API_BASE_PATH + "/admin/property")
-//@PreAuthorize("hasRole('ADMIN')")
 public class AdminPropertyController {
 
     private final PropertyService propertyService;
@@ -30,6 +29,7 @@ public class AdminPropertyController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PropertyDTO> create(@Valid @RequestBody PropertyCreateDTO propertyCreateDTO) {
         Property property = PropertyMapper.toEntity(propertyCreateDTO);
         Property savedProperty = propertyService.save(property);
@@ -38,6 +38,7 @@ public class AdminPropertyController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PropertyDTO>updateProperty(@PathVariable String id,@Valid @RequestBody PropertyCreateDTO propertyCreateDTO) {
         Property property = PropertyMapper.toEntity(propertyCreateDTO);
         Property updated = propertyService.update(property,id);
@@ -47,6 +48,7 @@ public class AdminPropertyController {
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<PropertyDTO>> getAll() {
         List<PropertyDTO> properties = propertyService.findAll()
                 .stream()
@@ -57,6 +59,7 @@ public class AdminPropertyController {
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PropertyDTO> getById(@PathVariable String id) {
         Property property = propertyService.findById(id);
 
@@ -64,6 +67,7 @@ public class AdminPropertyController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         propertyService.deleteById(id);
 
