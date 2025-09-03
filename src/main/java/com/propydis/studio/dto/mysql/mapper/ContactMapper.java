@@ -4,6 +4,8 @@ import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.model.mysql.Contact;
 
+import java.time.LocalDateTime;
+
 public class ContactMapper {
 
     public static ContactDTO toDTO(Contact contact) {
@@ -30,6 +32,7 @@ public class ContactMapper {
         contact.setEmail(contactCreateDTO.getEmail());
         contact.setPhone(contactCreateDTO.getPhone());
         contact.setMessage(contactCreateDTO.getMessage());
+        contact.setCreatedAt(LocalDateTime.now());
 
         return contact;
     }
