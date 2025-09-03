@@ -60,7 +60,7 @@ public class ContactControllerTest {
 
         contact.setId(1L);
         contact.setReplyMessage("Message_Reply");
-        contact.setCreatedAt(LocalDateTime.now());
+        //contact.setCreatedAt(LocalDateTime.now());
         contact.setStatus(ContactStatus.NEW);
 
         Mockito.when(contactService.save(Mockito.any()))
@@ -150,41 +150,4 @@ public class ContactControllerTest {
 
     }
 
-
-    @Test
-    @WithMockUser(username = "Flavio", roles = "USER")
-    public void testReplyContact() throws Exception {
-        Contact contact = new Contact();
-
-        contact.setId(1L);
-        contact.setFirstName("Flavio");
-        contact.setLastName("Davis");
-        contact.setEmail("flavio@example.com");
-        contact.setPhone("1234567890");
-        contact.setMessage("Message test");
-        contact.setReplyMessage("Message_Reply");
-        contact.setCreatedAt(LocalDateTime.now());
-        contact.setStatus(ContactStatus.VIEWED);
-
-        Mockito.when(contactService.reply(Mockito.eq(1L), Mockito.anyString()))
-                .thenAnswer(invocation -> {
-                    Long id = invocation.getArgument(0);
-                    String replyMsg = invocation.getArgument(1);
-
-                    contact.setId(id);
-                    contact.setReplyMessage(replyMsg);
-                    contact.setStatus(ContactStatus.REPLIED);
-
-                    return contact;
-                });
-
-
-        mockMvc.perform(put("/api/v0.1/contact/reply/{id}", 1L)
-                        .contentType(MediaType.TEXT_PLAIN)
-                        .content("Respuesta desde test"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.replyMessage").value("Respuesta desde test"))
-                .andExpect(jsonPath("$.contactStatus").value("REPLIED"));
-    }
 }

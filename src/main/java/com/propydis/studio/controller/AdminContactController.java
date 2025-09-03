@@ -49,6 +49,7 @@ public class AdminContactController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ContactDTO> update(@Valid @RequestBody ContactCreateDTO contactCreateDTO, @PathVariable long id) {
         Contact contact = ContactMapper.toEntity(contactCreateDTO);
         Contact  updatedContact = contactService.update(contact,id);
@@ -57,6 +58,7 @@ public class AdminContactController {
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ContactDTO> getById(@PathVariable long id) {
         Contact contact = contactService.findById(id);
 

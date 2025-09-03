@@ -4,9 +4,11 @@ package com.propydis.studio.auth.config;
 import com.propydis.studio.auth.jwt.JwtAuthenticationFilter;
 import com.propydis.studio.auth.jwt.JwtService;
 import com.propydis.studio.auth.login.AuthService;
+import io.jsonwebtoken.io.Decoders;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,6 +23,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
+//Añadido 3-9
+
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import javax.crypto.spec.SecretKeySpec;
+import org.springframework.beans.factory.annotation.Value;
+
+
+
+
+
+
+//añadido 3-9
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
@@ -89,7 +111,20 @@ public class WebSecurityConfig {
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+
+                //comentado por que no autentica bin, supuestamente en tiempor real 3-9
+                //.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+                //añadido por el cambio de arriba
+
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                        )
+                );
+
+
 
         return http.build();
     }
@@ -103,6 +138,37 @@ public class WebSecurityConfig {
     @Bean
     public JwtService jwtService() {
         return new JwtService();
+    }
+
+
+    //añadido 3-9
+
+
+    @Bean
+    public Converter<Jwt, AbstractAuthenticationToken> jwtAuthenticationConverter() {
+        return jwt -> {
+            var authoritiesConverter = new JwtGrantedAuthoritiesConverter();
+            authoritiesConverter.setAuthorityPrefix("");
+            authoritiesConverter.setAuthoritiesClaimName("roles");
+
+            var authorities = authoritiesConverter.convert(jwt);
+            return new JwtAuthenticationToken(jwt, authorities);
+        };
+    }
+
+
+
+    //añadido 3-9
+
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;
+
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        SecretKeySpec secretKey = new SecretKeySpec(keyBytes, "HmacSHA256");
+        return NimbusJwtDecoder.withSecretKey(secretKey).build();
     }
 
 
