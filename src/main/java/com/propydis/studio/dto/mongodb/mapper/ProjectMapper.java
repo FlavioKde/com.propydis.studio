@@ -10,6 +10,7 @@ public class ProjectMapper {
 
     public static Project toEntity(ProjectCreateDTO projectCreateDTO) {
         Project project = new Project();
+
         project.setName(projectCreateDTO.getName());
         project.setDescription(projectCreateDTO.getDescription());
         project.setPhotos(
@@ -37,5 +38,11 @@ public class ProjectMapper {
         projectDTO.setProjectStatus(project.getProjectStatus());
 
         return projectDTO;
+    }
+
+    public static Project toEntity(ProjectCreateDTO dto, String id) {
+        Project project = toEntity(dto);
+        project.setId(id);
+        return project;
     }
 }

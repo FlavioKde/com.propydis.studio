@@ -8,6 +8,7 @@ import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.dto.mysql.mapper.ContactMapper;
 import com.propydis.studio.model.mysql.Contact;
+import com.propydis.studio.model.mysql.ContactStatus;
 import com.propydis.studio.service.mysql.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -63,6 +64,18 @@ public class AdminContactController {
         Contact contact = contactService.findById(id);
 
         return ResponseEntity.ok(ContactMapper.toDTO(contact));
+    }
+
+    @PutMapping("/mark-as-read/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> markAsRead(@PathVariable Long id) {
+        Contact contact = contactService.findById(id);
+        if (contact == null) {
+            return ResponseEntity.notFound().build();
+        }
+        contact.setStatus(ContactStatus.VIEWED);
+        contactService.save(contact);
+        return ResponseEntity.noContent().build();
     }
 
 }
