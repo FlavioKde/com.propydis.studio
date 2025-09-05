@@ -1,5 +1,6 @@
 package com.propydis.studio.dto.mongodb.mapper;
 
+
 import com.propydis.studio.dto.mongodb.PropertyCreateDTO;
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.model.mongodb.Property;
@@ -21,6 +22,9 @@ public class PropertyMapper {
                         .map(PhotoMapper::toEntity)
                         .collect(Collectors.toList())
         );
+        property.setPriceValue(dto.getPriceValue());
+        property.setPriceText(dto.getPriceText());
+
         return property;
     }
 
@@ -39,6 +43,15 @@ public class PropertyMapper {
         propertyDTO.setCreatedAt(entity.getCreatedAt());
         propertyDTO.setUpdatedAt(entity.getUpdatedAt());
         propertyDTO.setPropertyStatus(entity.getPropertyStatus());
+        propertyDTO.setPriceValue(entity.getPriceValue());
+        propertyDTO.setPriceText(entity.getPriceText());
+
         return propertyDTO;
+    }
+
+    public static Property toEntity(PropertyCreateDTO propertyCreateDTO, String id) {
+        Property property = toEntity(propertyCreateDTO);
+        property.setId(id);
+        return property;
     }
 }

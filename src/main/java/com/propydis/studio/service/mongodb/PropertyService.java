@@ -17,7 +17,10 @@ public class PropertyService {
     }
 
     public Property save(Property property) {
+
+        validatedPrice(property);
         return propertyRepository.save(property);
+
     }
 
     public Property update(Property property, String id) {
@@ -28,6 +31,9 @@ public class PropertyService {
         existing.setDescription(property.getDescription());
         existing.setPhotos(property.getPhotos());
         existing.setPropertyStatus(property.getPropertyStatus());
+        existing.setPriceValue(property.getPriceValue());
+        existing.setPriceText(property.getPriceText());
+        validatedPrice(existing);
 
         return propertyRepository.save(existing);
     }
@@ -37,7 +43,7 @@ public class PropertyService {
     }
 
     public Property findById(String id) {
-        return  propertyRepository.findById(id)
+        return propertyRepository.findById(id)
                 .orElseThrow(() -> new NotFoundByIdException(id, "property"));
     }
 
@@ -46,5 +52,11 @@ public class PropertyService {
                 .orElseThrow(() -> new NotFoundByIdException(id, "property"));
 
         propertyRepository.delete(existing);
+    }
+
+    public void validatedPrice(Property property) {
+        if (property.getPriceText() == null && property.getPriceValue() == null) {
+            throw new IllegalArgumentException("Debe especificarse un precio o una descripción.");
+        }
     }
 }
