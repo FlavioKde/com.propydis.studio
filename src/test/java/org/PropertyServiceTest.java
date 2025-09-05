@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,8 @@ public class PropertyServiceTest {
         property.setCreatedAt(LocalDateTime.now());
         property.setUpdatedAt(LocalDateTime.now());
         property.setPropertyStatus(PropertyStatus.RESERVED);
+        property.setPriceValue(new BigDecimal("12000.99"));
+        property.setPriceText("En proceso");
 
         when(propertyRepository.save(any(Property.class))).thenReturn(property);
 
@@ -75,6 +78,8 @@ public class PropertyServiceTest {
         property.setCreatedAt(LocalDateTime.now());
         property.setUpdatedAt(LocalDateTime.now());
         property.setPropertyStatus(PropertyStatus.RESERVED);
+        property.setPriceValue(new  BigDecimal("12000.00"));
+        property.setPriceText("Sin precio");
 
         when(propertyRepository.findById("abd123456")).thenReturn(Optional.of(property));
 
