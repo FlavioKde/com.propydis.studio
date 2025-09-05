@@ -4,7 +4,7 @@ package com.propydis.studio.dto.mongodb;
 import com.propydis.studio.model.mongodb.PropertyStatus;
 
 
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +17,8 @@ public class PropertyDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private PropertyStatus propertyStatus;
+    private BigDecimal priceValue;
+    private String priceText;
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -38,4 +40,11 @@ public class PropertyDTO {
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    public BigDecimal getPriceValue() { return priceValue; }
+    public void setPriceValue(BigDecimal priceValue) { this.priceValue = priceValue; }
+
+    public String getPriceText() { return priceText; }
+    public void setPriceText(String priceText) { this.priceText = priceText; }
+
 }

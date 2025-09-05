@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,18 +22,26 @@ public class Property {
     @LastModifiedDate
     private LocalDateTime updatedAt;
     private PropertyStatus propertyStatus;
+    private BigDecimal priceValue;
+    private String priceText;
 
     public Property() {}
 
-    public Property(String name, String description, List<Photo> photos, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus) {
+
+
+    public Property(String name, String description, List<Photo> photos, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus,  BigDecimal priceValue, String priceText) {
         this.name = name;
         this.description = description;
         this.photos = photos;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.propertyStatus = propertyStatus;
+        this.priceValue = priceValue;
+        this.priceText = priceText;
 
     }
+
+
 
     public String getId() {
         return id;
@@ -90,5 +99,19 @@ public class Property {
         this.propertyStatus = propertyStatus;
     }
 
+    public BigDecimal getPriceValue() {
+        return priceValue;
+    }
 
+    public void setPriceValue(BigDecimal priceValue) {
+        this.priceValue = priceValue;
+    }
+
+    public String getPriceText() {
+        return priceText;
+    }
+
+    public void setPriceText(String priceText) {
+        this.priceText = priceText;
+    }
 }
