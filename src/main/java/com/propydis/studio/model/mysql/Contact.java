@@ -30,11 +30,12 @@ public class Contact {
     private String replyMessage;
 
     @Enumerated(EnumType.STRING)
-    private ContactStatus status;
+    @Column(nullable = false, name = "contact_status")
+    private ContactStatus contactStatus =  ContactStatus.NEW;
 
     public Contact() {}
 
-    public Contact(String firstName, String lastName, String email, String phone, String message, LocalDateTime created_at,String replyMessage, ContactStatus status) {
+    public Contact(String firstName, String lastName, String email, String phone, String message, LocalDateTime created_at,String replyMessage, ContactStatus contactStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -42,7 +43,7 @@ public class Contact {
         this.message = message;
         this.createdAt = created_at;
         this.replyMessage = replyMessage;
-        this.status = status;
+        this.contactStatus = contactStatus;
     }
 
     public Long getId() {
@@ -110,13 +111,11 @@ public class Contact {
     }
 
 
-    public ContactStatus getStatus() {
-        return status;
+    public ContactStatus getContactStatus() {
+        return contactStatus;
     }
 
-    public void setStatus(ContactStatus status) {
-        this.status = status;
+    public void setContactStatus(ContactStatus contactStatus) {
+        this.contactStatus = contactStatus;
     }
-
-
 }

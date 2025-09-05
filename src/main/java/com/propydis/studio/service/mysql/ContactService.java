@@ -55,7 +55,7 @@ public class ContactService {
                 .orElseThrow(() -> new NotFoundByIdException(id, "contact"));
 
         contact.setReplyMessage(replyMessage);
-        contact.setStatus(ContactStatus.REPLIED);
+        contact.setContactStatus(ContactStatus.REPLIED);
 
         return contactRepository.save(contact);
     }

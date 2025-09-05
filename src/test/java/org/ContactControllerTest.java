@@ -61,7 +61,7 @@ public class ContactControllerTest {
         contact.setId(1L);
         contact.setReplyMessage("Message_Reply");
         //contact.setCreatedAt(LocalDateTime.now());
-        contact.setStatus(ContactStatus.NEW);
+        contact.setContactStatus(ContactStatus.NEW);
 
         Mockito.when(contactService.save(Mockito.any()))
                 .thenReturn(contact);
@@ -97,7 +97,7 @@ public class ContactControllerTest {
         contact.setId(1L);
         contact.setReplyMessage("Message_Reply");
         contact.setCreatedAt(LocalDateTime.now());
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         Mockito.when(contactService.update(Mockito.any(), Mockito.eq(1L)))
                 .thenReturn(contact);
@@ -131,7 +131,7 @@ public class ContactControllerTest {
         contact.setMessage("Message test");
         contact.setReplyMessage("Message_Reply");
         contact.setCreatedAt(LocalDateTime.now());
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         Mockito.when(contactService.findById(Mockito.anyLong())).thenReturn(contact);
 
