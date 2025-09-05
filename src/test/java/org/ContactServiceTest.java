@@ -41,7 +41,7 @@ public class ContactServiceTest {
         contact.setMessage("Message");
         contact.setCreatedAt(LocalDateTime.now());
         contact.setReplyMessage("Reply");
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         when(contactRepository.save(any(Contact.class))).thenReturn(contact);
 
@@ -63,7 +63,7 @@ public class ContactServiceTest {
         contact.setMessage("Message");
         contact.setCreatedAt(LocalDateTime.now());
         contact.setReplyMessage("Reply");
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         when(contactRepository.findById(1L)).thenReturn(Optional.of(contact));
 
@@ -99,7 +99,7 @@ public class ContactServiceTest {
         contact.setMessage("Message");
         contact.setCreatedAt(LocalDateTime.now());
         contact.setReplyMessage("Reply");
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         when(contactRepository.findById(1L)).thenReturn(Optional.of(contact));
 
@@ -132,7 +132,7 @@ public class ContactServiceTest {
         contact.setMessage("Message");
         contact.setCreatedAt(LocalDateTime.now());
         contact.setReplyMessage("Reply");
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         when(contactRepository.findById(1L)).thenReturn(Optional.of(contact));
 
@@ -142,7 +142,7 @@ public class ContactServiceTest {
 
         assertNotNull(repliedContact);
         assertEquals("Aqui estamos", repliedContact.getReplyMessage());
-        assertEquals(ContactStatus.REPLIED, repliedContact.getStatus());
+        assertEquals(ContactStatus.REPLIED, repliedContact.getContactStatus());
         verify(contactRepository, times(1)).findById(1L);
         verify(contactRepository, times(1)).save(any(Contact.class));
 

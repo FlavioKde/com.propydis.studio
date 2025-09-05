@@ -73,8 +73,24 @@ public class AdminContactController {
         if (contact == null) {
             return ResponseEntity.notFound().build();
         }
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
         contactService.save(contact);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/mark-as-viewed/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> markAsViewed(@PathVariable Long id) {
+        Contact contact = contactService.findById(id);
+        if (contact == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        if (contact.getContactStatus() == ContactStatus.NEW) {
+            contact.setContactStatus(ContactStatus.VIEWED);
+            contactService.save(contact);
+        }
+
         return ResponseEntity.noContent().build();
     }
 

@@ -3,6 +3,7 @@ package com.propydis.studio.dto.mysql.mapper;
 import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.model.mysql.Contact;
+import com.propydis.studio.model.mysql.ContactStatus;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ public class ContactMapper {
         contactDTO.setMessage(contact.getMessage());
         contactDTO.setCreatedAt(contact.getCreatedAt());
         contactDTO.setReplyMessage(contact.getReplyMessage());
-        contactDTO.setContactStatus(contact.getStatus());
+        contactDTO.setContactStatus(contact.getContactStatus());
 
         return contactDTO;
     }
@@ -33,6 +34,7 @@ public class ContactMapper {
         contact.setPhone(contactCreateDTO.getPhone());
         contact.setMessage(contactCreateDTO.getMessage());
         contact.setCreatedAt(LocalDateTime.now());
+        contact.setContactStatus(ContactStatus.NEW);
 
         return contact;
     }

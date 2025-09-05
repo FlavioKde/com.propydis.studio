@@ -55,7 +55,7 @@ public class AdminContactControllerTest {
         contact.setMessage("Message test");
         contact.setReplyMessage("Message_Reply");
         contact.setCreatedAt(LocalDateTime.now());
-        contact.setStatus(ContactStatus.VIEWED);
+        contact.setContactStatus(ContactStatus.VIEWED);
 
         Mockito.when(contactService.reply(Mockito.eq(1L), Mockito.anyString()))
                 .thenAnswer(invocation -> {
@@ -64,7 +64,7 @@ public class AdminContactControllerTest {
 
                     contact.setId(id);
                     contact.setReplyMessage(replyMsg);
-                    contact.setStatus(ContactStatus.REPLIED);
+                    contact.setContactStatus(ContactStatus.REPLIED);
 
                     return contact;
                 });
