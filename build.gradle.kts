@@ -62,6 +62,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 	implementation ("com.github.ben-manes.caffeine:caffeine")
 
+	// Cloudinary
+	implementation("com.cloudinary:cloudinary-http44:1.29.0")
+
+	// Environment Variables
+	implementation("io.github.cdimascio:dotenv-java:2.2.4")
+
 	// DevTools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
