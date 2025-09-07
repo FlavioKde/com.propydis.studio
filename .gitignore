@@ -37,8 +37,8 @@ out/
 .vscode/
 
 ### config local file
-src/main/resources/application.properties
-src/main/resources/application-*.properties
+application.properties
+application-*.properties
 *.env
 .env.local
 .env.*.local
