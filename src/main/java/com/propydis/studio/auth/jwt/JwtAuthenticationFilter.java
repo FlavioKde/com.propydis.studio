@@ -28,21 +28,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.userDetailsService = userDetailsService;
     }
 
+/*
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String requestPath = request.getServletPath();
-        /*
-        if (isPublicPath(requestPath)) {
-            logger.debug("Ruta pública detectada: {}", requestPath);
-            filterChain.doFilter(request, response);
-            return;
-        }
 
-
-         */
         final String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             logger.warn("Header Authorization ausente o mal formado en ruta protegida: {}", requestPath);
@@ -66,11 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 logger.warn("Token inválido para usuario: {}", username);
             }
         }
-        //voy a probar, por el metodo de tipo POST ej, or eso lo cambie
-        /*
-        filterChain.doFilter(request, response);
 
-         */
 
         String method = request.getMethod();
         String path = request.getServletPath();
@@ -84,33 +73,67 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
     }
-// idem arriba
 
-    /*
-    private boolean isPublicPath(String path) {
-        return path.equals("/api/v0.1/auth/login")
-                || path.equals("/api/v0.1/auth/property")
-                || path.equals("/api/v0.1/auth/project")
-                || path.equals("/api/v0.1/auth/contact")
 
-                || path.startsWith("/swagger-ui")
-                || path.startsWith("/v3/api-docs")
-                || path.startsWith("/swagger-resources")
-                || path.startsWith("/webjars")
-                || path.equals("/swagger-ui.html");
+
+ */
+
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+
+        String requestPath = request.getServletPath();
+        String method = request.getMethod();
+
+        // 1. Si es ruta pública, continuar inmediatamente
+        if (isPublicPath(method, requestPath)) {
+            logger.debug("Ruta pública detectada: {} {}", method, requestPath);
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // 2. Para rutas protegidas, validar el token
+        final String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            logger.warn("Header Authorization ausente o mal formado en ruta protegida: {}", requestPath);
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token missing or invalid");
+            return; // Importante: return después de enviar error
+        }
+
+        final String jwt = authHeader.substring(7);
+        final String username = jwtService.extractUsername(jwt);
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+            if (jwtService.isTokenValid(jwt, userDetails)) {
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+                logger.debug("Autenticación establecida para usuario: {}", username);
+            } else {
+                logger.warn("Token inválido para usuario: {}", username);
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
+                return; // Importante: return después de enviar error
+            }
+        }
+
+        // 3. ¡ESTA LÍNEA ES CRUCIAL! Continúa con la cadena de filtros
+        filterChain.doFilter(request, response);
     }
-
-     */
 
 
     private boolean isPublicPath(String method, String path) {
         return (method.equals("POST") && path.equals("/api/v0.1/auth/login"))
                 || (method.equals("POST") && path.equals("/api/v0.1/contact/save"))
                 || (method.equals("POST") && path.equals("/api/v0.1/contact"))
-                || (method.equals("GET") && path.equals("/api/v0.1/property"))
-                || (method.equals("GET") && path.startsWith("/api/v0.1/property/**"))
+                || (method.equals("GET") && path.equals("/api/v0.1/property/getAll"))
+                || (method.equals("GET") && path.startsWith("/api/v0.1/property/get"))
+                || (method.equals("GET") && path.startsWith("/api/v0.1/project/get/"))
                 || (method.equals("GET") && path.equals("/api/v0.1/project/getAll"))
-                || (method.equals("GET") && path.startsWith("/api/v0.1/project/get/**"))
                 || path.startsWith("/swagger-ui")
                 || path.startsWith("/v3/api-docs")
                 || path.startsWith("/swagger-resources")
