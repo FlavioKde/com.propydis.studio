@@ -114,15 +114,18 @@ public class WebSecurityConfig {
 
 
                 //comentado por que no autentica bin, supuestamente en tiempor real 3-9
-                //.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
                 //añadido por el cambio de arriba
-
+                /*
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
                         )
-                );
+
+                 */
+
+                //);
 
 
 
