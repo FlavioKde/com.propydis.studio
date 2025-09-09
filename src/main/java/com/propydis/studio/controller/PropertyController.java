@@ -2,6 +2,7 @@ package com.propydis.studio.controller;
 
 
 import com.propydis.studio.config.ApiConfig;
+import com.propydis.studio.dto.mongodb.ProjectDTO;
 import com.propydis.studio.dto.mongodb.PropertyCreateDTO;
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
@@ -25,43 +26,42 @@ public class PropertyController {
         public PropertyController(PropertyService propertyService) {
             this.propertyService = propertyService;
         }
-        @PostMapping("/save")
-        public ResponseEntity<PropertyDTO> create(@Valid @RequestBody PropertyCreateDTO propertyCreateDTO) {
-            Property property = PropertyMapper.toEntity(propertyCreateDTO);
-            Property savedProperty = propertyService.save(property);
-
-            return new ResponseEntity<>(PropertyMapper.toDTO(savedProperty), HttpStatus.CREATED);
-        }
-        @PutMapping("/{id}")
-        public ResponseEntity<PropertyDTO>updateProperty(@PathVariable String id,@Valid @RequestBody PropertyCreateDTO propertyCreateDTO) {
-            Property property = PropertyMapper.toEntity(propertyCreateDTO);
-            Property updated = propertyService.update(property,id);
-
-            return ResponseEntity.ok(PropertyMapper.toDTO(updated));
-
-        }
 
         @GetMapping("/getAll")
         public ResponseEntity<List<PropertyDTO>> getAll() {
+            /*
             List<PropertyDTO> properties = propertyService.findAll()
                     .stream()
                     .map(PropertyMapper::toDTO)
                     .collect(Collectors.toList());
 
             return ResponseEntity.ok(properties);
+
+             */
+            List<PropertyDTO> properties = propertyService.findAll().stream()
+                    .map(property -> propertyService.getPropertyDTOById(property.getId()))
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok(properties);
+
+
+
         }
 
         @GetMapping("/get/{id}")
         public ResponseEntity<PropertyDTO> getById(@PathVariable String id) {
+
+            /*
             Property property = propertyService.findById(id);
 
             return ResponseEntity.ok(PropertyMapper.toDTO(property));
+
+
+             */
+            PropertyDTO dto = propertyService.getPropertyDTOById(id);
+            return ResponseEntity.ok(dto);
+
         }
 
-        @DeleteMapping("/delete/{id}")
-        public ResponseEntity<Void> deleteById(@PathVariable String id) {
-            propertyService.deleteById(id);
 
-            return ResponseEntity.ok().build();
-        }
 }

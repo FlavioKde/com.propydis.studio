@@ -18,9 +18,13 @@ public class CloudinaryService {
         this.cloudinary = cloudinary;
     }
 
-    public String uploadImage(MultipartFile file) throws IOException {
-        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-        return uploadResult.get("secure_url").toString();
+
+    public void deleteImage(String publicId) throws IOException {
+        cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+    }
+
+    public Map uploadImage(MultipartFile file) throws IOException {
+        return cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
     }
 
 }

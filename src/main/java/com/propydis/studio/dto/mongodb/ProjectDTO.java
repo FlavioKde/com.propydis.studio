@@ -10,10 +10,12 @@ public class ProjectDTO {
     private String id;
     private String name;
     private String description;
-    private List<PhotoDTO> photosDTO;
+    private List<PhotoDTO> photos;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private ProjectStatus projectStatus;
+
+    public ProjectDTO() {}
 
     public String getId() {
         return id;
@@ -39,11 +41,12 @@ public class ProjectDTO {
         this.description = description;
     }
 
-    public List<PhotoDTO> getPhotosDTO() {
-        return photosDTO;
+    public List<PhotoDTO> getPhotos() {
+        return photos;
     }
-    public void setPhotosDTO(List<PhotoDTO> photosDTO) {
-        this.photosDTO = photosDTO;
+
+    public void setPhotos(List<PhotoDTO> photos) {
+        this.photos = photos;
     }
 
     public LocalDateTime getCreatedAt() {

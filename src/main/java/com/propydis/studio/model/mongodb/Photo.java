@@ -11,12 +11,14 @@ public class Photo {
     private String id;
     private String url;
     private String altText;
+    private String publicId;
 
     public Photo() {}
 
-    public Photo(String url, String altText) {
+    public Photo(String url, String altText, String publicId) {
         this.url = url;
         this.altText = altText;
+        this.publicId = publicId;
     }
 
 
@@ -43,5 +45,13 @@ public class Photo {
 
     public void setAltText(String altText) {
         this.altText = altText;
+    }
+
+    public String getPublicId() {
+        return publicId;
+    }
+
+    public void setPublicId(String publicId) {
+        this.publicId = publicId;
     }
 }

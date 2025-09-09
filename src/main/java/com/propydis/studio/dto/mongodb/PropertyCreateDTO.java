@@ -1,5 +1,6 @@
 package com.propydis.studio.dto.mongodb;
 
+import com.propydis.studio.repository.mongodb.ProjectRepository;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -21,6 +22,8 @@ public class PropertyCreateDTO {
     private BigDecimal priceValue;
 
     private String priceText;
+
+    public PropertyCreateDTO() {}
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

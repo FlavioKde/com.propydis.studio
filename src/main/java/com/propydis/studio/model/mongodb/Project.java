@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "project")
@@ -15,7 +16,7 @@ public class Project {
     private String id;
     private String name;
     private String description;
-    private List<Photo> photos;
+    private List<String> photoIds = new ArrayList<>();
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -24,10 +25,10 @@ public class Project {
 
     public Project() {}
 
-    public Project(String name, String description, List<Photo> photos, LocalDateTime createdAt, LocalDateTime updatedAt,  ProjectStatus projectStatus) {
+    public Project(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt,  ProjectStatus projectStatus) {
         this.name = name;
         this.description = description;
-        this.photos = photos;
+        this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.projectStatus = projectStatus;
@@ -57,12 +58,12 @@ public class Project {
         this.description = description;
     }
 
-    public List<Photo> getPhotos() {
-        return photos;
+    public List<String> getPhotoIds() {
+        return photoIds;
     }
 
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
+    public void setPhotoIds(List<String> photoIds) {
+        this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
     }
 
     public LocalDateTime getCreatedAt() {

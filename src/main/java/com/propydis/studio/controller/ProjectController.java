@@ -24,28 +24,23 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<ProjectDTO> create(@Valid @RequestBody ProjectCreateDTO projectCreateDTO) {
-        Project project = ProjectMapper.toEntity(projectCreateDTO);
-        Project savedProject = projectService.save(project);
 
-        return ResponseEntity.ok(ProjectMapper.toDTO(savedProject));
 
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ProjectDTO> updatedProject(@PathVariable String id, @Valid @RequestBody ProjectCreateDTO projectCreateDTO) {
-        Project project = ProjectMapper.toEntity(projectCreateDTO);
-        Project updated = projectService.update(project, id);
-
-        return ResponseEntity.ok(ProjectMapper.toDTO(updated));
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<ProjectDTO>> getAll() {
+
+        /*
         List<ProjectDTO> projects = projectService.findAll()
                 .stream()
                 .map(ProjectMapper::toDTO)
+                .collect(Collectors.toList());
+
+         */
+
+
+        List<ProjectDTO> projects = projectService.findAll().stream()
+                .map(project -> projectService.getProjectDTOById(project.getId()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(projects);
@@ -54,16 +49,19 @@ public class ProjectController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<ProjectDTO> getById(@PathVariable String id) {
+
+        /*
         Project project = projectService.findById(id);
 
         return ResponseEntity.ok(ProjectMapper.toDTO(project));
+
+
+         */
+        ProjectDTO project = projectService.getProjectDTOById(id);
+        return ResponseEntity.ok(project);
+
+
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable String id) {
-        projectService.deleteById(id);
-
-        return ResponseEntity.ok().build();
-    }
 
 }

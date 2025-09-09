@@ -2,12 +2,14 @@ package com.propydis.studio.dto.mongodb.mapper;
 
 import com.propydis.studio.dto.mongodb.ProjectCreateDTO;
 import com.propydis.studio.dto.mongodb.ProjectDTO;
+import com.propydis.studio.model.mongodb.Photo;
 import com.propydis.studio.model.mongodb.Project;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProjectMapper {
-
+    /*
     public static Project toEntity(ProjectCreateDTO projectCreateDTO) {
         Project project = new Project();
 
@@ -23,11 +25,36 @@ public class ProjectMapper {
         return project;
     }
 
+
+     */
+
+    public static Project toEntity(ProjectCreateDTO projectCreateDTO, List<Photo> photos) {
+        Project project = new Project();
+
+        project.setName(projectCreateDTO.getName());
+        project.setDescription(projectCreateDTO.getDescription());
+
+
+        List<String> photoIds = photos.stream()
+                .map(Photo::getId)
+                .collect(Collectors.toList());
+
+        project.setPhotoIds(photoIds);
+
+
+
+        return project;
+    }
+
+
+
+    /*
     public static ProjectDTO toDTO(Project project) {
         ProjectDTO projectDTO = new ProjectDTO();
         projectDTO.setId(project.getId());
         projectDTO.setName(project.getName());
         projectDTO.setDescription(project.getDescription());
+
         projectDTO.setPhotosDTO(
                 project.getPhotos().stream()
                         .map(PhotoMapper::toDTO)
@@ -40,9 +67,35 @@ public class ProjectMapper {
         return projectDTO;
     }
 
+
+     */
+
+
+        public static ProjectDTO toDTO(Project project, List<Photo> photos) {
+            ProjectDTO dto = new ProjectDTO();
+            dto.setId(project.getId());
+            dto.setName(project.getName());
+            dto.setDescription(project.getDescription());
+            dto.setCreatedAt(project.getCreatedAt());
+            dto.setUpdatedAt(project.getUpdatedAt());
+            dto.setProjectStatus(project.getProjectStatus());
+            dto.setPhotos(PhotoMapper.toDTOList(photos));
+            return dto;
+
+    }
+
+    public static Project toEntity(ProjectCreateDTO dto, List<Photo> photos, String id) {
+        Project project = toEntity(dto, photos);
+        project.setId(id);
+        return project;
+    }
+
+    /*
     public static Project toEntity(ProjectCreateDTO dto, String id) {
         Project project = toEntity(dto);
         project.setId(id);
         return project;
     }
+
+     */
 }
