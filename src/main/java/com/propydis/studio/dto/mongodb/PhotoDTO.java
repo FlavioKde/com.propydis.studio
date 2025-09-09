@@ -4,18 +4,20 @@ package com.propydis.studio.dto.mongodb;
 import lombok.AllArgsConstructor;
 
 
-@AllArgsConstructor
+
 public class PhotoDTO {
 
     private String id;
     private String url;
     private String altText;
+    private String publicId;
 
     public PhotoDTO() {}
 
-    public PhotoDTO(String url, String altText) {
+    public PhotoDTO(String url, String altText, String publicId) {
         this.url = url;
         this.altText = altText;
+        this.publicId = publicId;
     }
 
     public String getId() {
@@ -40,5 +42,13 @@ public class PhotoDTO {
 
     public void setAltText(String altText) {
         this.altText = altText;
+    }
+
+    public String getPublicId() {
+        return publicId;
+    }
+
+    public void setPublicId(String publicId) {
+        this.publicId = publicId;
     }
 }

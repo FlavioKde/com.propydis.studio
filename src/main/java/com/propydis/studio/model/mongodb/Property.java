@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "property")
@@ -16,7 +17,8 @@ public class Property {
     private String id;
     private String name;
     private String description;
-    private List<Photo> photos;
+    private List<String> photoIds = new ArrayList<>();
+
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
@@ -29,10 +31,10 @@ public class Property {
 
 
 
-    public Property(String name, String description, List<Photo> photos, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus,  BigDecimal priceValue, String priceText) {
+    public Property(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus,  BigDecimal priceValue, String priceText) {
         this.name = name;
         this.description = description;
-        this.photos = photos;
+        this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.propertyStatus = propertyStatus;
@@ -67,13 +69,14 @@ public class Property {
         this.description = description;
     }
 
-    public List<Photo> getPhotos() {
-        return photos;
+    public List<String> getPhotoIds() {
+        return photoIds;
     }
 
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
+    public void setPhotoIds(List<String> photoIds) {
+        this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
     }
+
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

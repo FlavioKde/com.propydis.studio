@@ -20,6 +20,10 @@ public class PropertyDTO {
     private BigDecimal priceValue;
     private String priceText;
 
+    public PropertyDTO() {}
+
+
+
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
