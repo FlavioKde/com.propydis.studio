@@ -30,15 +30,6 @@ public class ProjectController {
     @GetMapping("/getAll")
     public ResponseEntity<List<ProjectDTO>> getAll() {
 
-        /*
-        List<ProjectDTO> projects = projectService.findAll()
-                .stream()
-                .map(ProjectMapper::toDTO)
-                .collect(Collectors.toList());
-
-         */
-
-
         List<ProjectDTO> projects = projectService.findAll().stream()
                 .map(project -> projectService.getProjectDTOById(project.getId()))
                 .collect(Collectors.toList());
@@ -50,13 +41,6 @@ public class ProjectController {
     @GetMapping("/get/{id}")
     public ResponseEntity<ProjectDTO> getById(@PathVariable String id) {
 
-        /*
-        Project project = projectService.findById(id);
-
-        return ResponseEntity.ok(ProjectMapper.toDTO(project));
-
-
-         */
         ProjectDTO project = projectService.getProjectDTOById(id);
         return ResponseEntity.ok(project);
 

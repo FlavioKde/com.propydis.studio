@@ -94,4 +94,12 @@ public class AdminContactController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+            contactService.findById(id);
+
+            return  ResponseEntity.noContent().build();
+    }
+
 }
