@@ -19,9 +19,7 @@ configurations {
 		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
-configurations.all {
-	exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
-}
+
 
 repositories {
 	mavenCentral()
@@ -35,8 +33,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
-	// Log4j2
-	implementation("org.springframework.boot:spring-boot-starter-log4j2")
+	// Logback
 	implementation("net.logstash.logback:logstash-logback-encoder:7.4")
 
 	// SpringDoc OpenAPI

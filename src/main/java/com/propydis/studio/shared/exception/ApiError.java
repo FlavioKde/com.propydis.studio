@@ -1,4 +1,4 @@
-package com.propydis.studio.exception;
+package com.propydis.studio.shared.exception;
 
 import java.time.LocalDateTime;
 

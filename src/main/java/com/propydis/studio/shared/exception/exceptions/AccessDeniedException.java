@@ -1,4 +1,4 @@
-package com.propydis.studio.exception.exceptions;
+package com.propydis.studio.shared.exception.exceptions;
 
 import com.propydis.studio.model.mysql.Role;
 

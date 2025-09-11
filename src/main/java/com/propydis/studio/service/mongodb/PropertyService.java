@@ -74,19 +74,16 @@ package com.propydis.studio.service.mongodb;
 
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
-import com.propydis.studio.exception.exceptions.NotFoundByIdException;
+import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
 import com.propydis.studio.model.mongodb.Photo;
 import com.propydis.studio.model.mongodb.Property;
 import com.propydis.studio.repository.mongodb.PhotoRepository;
 import com.propydis.studio.repository.mongodb.PropertyRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
