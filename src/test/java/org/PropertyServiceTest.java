@@ -1,6 +1,6 @@
 package org;
 
-import com.propydis.studio.exception.exceptions.NotFoundByIdException;
+import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
 import com.propydis.studio.model.mongodb.Photo;
 import com.propydis.studio.model.mongodb.Property;

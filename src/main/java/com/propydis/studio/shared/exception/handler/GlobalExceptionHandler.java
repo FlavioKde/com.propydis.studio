@@ -1,8 +1,8 @@
-package com.propydis.studio.exception.handler;
+package com.propydis.studio.shared.exception.handler;
 
-import com.propydis.studio.exception.ApiError;
-import com.propydis.studio.exception.exceptions.AccessDeniedException;
-import com.propydis.studio.exception.exceptions.NotFoundByIdException;
+import com.propydis.studio.shared.exception.ApiError;
+import com.propydis.studio.shared.exception.exceptions.AccessDeniedException;
+import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

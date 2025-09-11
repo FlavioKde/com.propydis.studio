@@ -1,6 +1,6 @@
 package com.propydis.studio.service.mysql;
 
-import com.propydis.studio.exception.exceptions.NotFoundByIdException;
+import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.Contact;
 import com.propydis.studio.model.mysql.ContactStatus;
 import com.propydis.studio.repository.mysql.ContactRepository;

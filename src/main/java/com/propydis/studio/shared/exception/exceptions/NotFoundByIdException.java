@@ -1,4 +1,4 @@
-package com.propydis.studio.exception.exceptions;
+package com.propydis.studio.shared.exception.exceptions;
 
 public class NotFoundByIdException extends RuntimeException {
     public NotFoundByIdException(Object id, String entityName) {

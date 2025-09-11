@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <!-- Propiedades desde application.properties -->
+    <springProperty scope="context" name="TEXT_LOG"    source="logging.file.name"/>
+    <springProperty scope="context" name="TEXT_MAX_SZ" source="logging.file.max-size"/>
+    <springProperty scope="context" name="TEXT_MAX_H"  source="logging.file.max-history"/>
+
+    <springProperty scope="context" name="JSON_LOG"    source="logging.file.json.name"/>
+    <springProperty scope="context" name="JSON_MAX_SZ" source="logging.file.json.max-size"/>
+    <springProperty scope="context" name="JSON_MAX_H"  source="logging.file.json.max-history"/>
+
+    <!-- Appender de texto plano -->
+    <appender name="TEXT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${TEXT_LOG}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/studio-app-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+            <maxFileSize>${TEXT_MAX_SZ}</maxFileSize>
+            <maxHistory>${TEXT_MAX_H}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender JSON -->
+    <appender name="JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${JSON_LOG}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/studio-app-%d{yyyy-MM-dd}-%i.json.gz</fileNamePattern>
+            <maxFileSize>${JSON_MAX_SZ}</maxFileSize>
+            <maxHistory>${JSON_MAX_H}</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <eventEol>true</eventEol>
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <logLevel/>
+                <threadName/>
+                <loggerName/>
+                <message/>
+                <stackTrace/>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- Logger raíz -->
+    <root level="${logging.level.root:-INFO}">
+        <appender-ref ref="TEXT"/>
+        <appender-ref ref="JSON"/>
+    </root>
+
+</configuration>

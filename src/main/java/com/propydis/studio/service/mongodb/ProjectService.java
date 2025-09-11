@@ -4,10 +4,7 @@ import java.util.List;
 
 import com.propydis.studio.dto.mongodb.ProjectDTO;
 import com.propydis.studio.dto.mongodb.mapper.ProjectMapper;
-import org.springframework.web.multipart.MultipartFile;
-import java.util.Map;
-import java.util.ArrayList;
-import com.propydis.studio.exception.exceptions.NotFoundByIdException;
+import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
 import com.propydis.studio.model.mongodb.Photo;
 import com.propydis.studio.model.mongodb.Project;
