@@ -225,7 +225,7 @@ For questions, feedback, or collaboration inquiries:
 - Author: Flavio
 - Location: Barcelona, Cataluña, España
 - Email: [flaviodavirro@gmail.com]
-- LinkedIn / Portfolio / GitHub: [Add links if available]
+- LinkedIn / GitHub: [https://github.com/FlavioKde]
 
 
 
