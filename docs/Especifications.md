@@ -1,4 +1,4 @@
-﻿# Project specifications Propidys
+﻿# Project specifications Propydis
 
 >> Done is better than perfect
 
@@ -7,24 +7,24 @@
 ``` bash
 
 
-| Componente              | Versión recomendada | Uso principal                                |
+| Component               | Recommended version | Main use                                     |
 | ----------------------- | ------------------- | -------------------------------------------- |
-| **Java**                | 21 (LTS)            | Lenguaje base                                |
-| **Spring Boot**         | 3.5.4               | Framework principal (REST, Config, Beans)    |
-| **Spring Web**          | 3.5.4               | Controladores REST (API JSON)                |
-| **Spring Security**     | 6.5.4               | Autenticación + Autorización (JWT)           |
-| **Spring Data JPA**     | 3.5.4               | Persistencia en MySQL                        |
-| **Spring Data MongoDB** | 3.5.4               | Persistencia en MongoDB                      |
-| **Spring Validation**   | 3.5.4               | Validación de DTOs y formularios             |
-| **Springdoc OpenAPI**   | 2.8.9               | Documentación Swagger UI                     |
-| **MySQL Connector**     | 8.1.0               | Driver JDBC para MySQL                       |
-| **JWT (jjwt)**          | 0.11.5              | Generación y validación de tokens            |
-| **Lombok**              | 1.18.34             | Reducción de boilerplate en entidades y DTOs |
-| **DevTools**            | 3.5.4               | Hot reload en desarrollo                     |
+| **Java**                | 21 (LTS)            | Base lenguage                                |
+| **Spring Boot**         | 3.5.4               | Main Framework  (REST, Config, Beans)        |
+| **Spring Web**          | 3.5.4               | REST Controllers (API JSON)                  |
+| **Spring Security**     | 6.5.4               | Authentication + Authorization (JWT)         |
+| **Spring Data JPA**     | 3.5.4               | Persistence in MySQL                         |
+| **Spring Data MongoDB** | 3.5.4               | Persistence in MongoDB                       |
+| **Spring Validation**   | 3.5.4               | Validation of DTOs and forms                 |
+| **Springdoc OpenAPI**   | 2.8.9               | Swagger UI Documentation                     |
+| **MySQL Connector**     | 8.1.0               | Driver JDBC for MySQL                        |
+| **JWT (jjwt)**          | 0.11.5              | Generation and validation of tokens          |
+| **Lombok**              | 1.18.34             | Reduction of boilerplate in entities and DTOs|
+| **DevTools**            | 3.5.4               | Hot reload in development                    |
 | **JUnit 5**             | Incluido en starter | Testing base                                 |
-| **Mockito**             | 5.11.0              | Mocking en tests unitarios                   |
-| **Reactor Test**        | 1.5.14              | Tests en flujos reactivos (si aplica)        |
-
+| **Mockito**             | 5.11.0              | Mocking in unit tests                        |
+| **Reactor Test**        | 1.5.14              | Tests in reactive flows (if applicable)      |
+| **Cloudinary**          | 1.29.0              | External storage of images                   |
 
 Frontend
 
@@ -160,11 +160,14 @@ classDiagram
       +LocalDateTime createdAt
       +LocalDateTime updatedAt
       +PropertyStatus status
+      +BigDecimal priceValue
+      +String priceText
     }
     class Photo {
       +Long id
       +String url
       +String altText
+      +String publicId
     }
     class User {
       +Long id
@@ -238,5 +241,6 @@ classDiagram
 “Done is better than perfect”
 “Progress over perfection”
 “Start now, improve later
+
 
 
