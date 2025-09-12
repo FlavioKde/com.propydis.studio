@@ -19,32 +19,19 @@ public class AuthService {
         private final AuthenticationManager authenticationManager;
         private final JwtService jwtService;
         private final UserRepository userRepository;
-      //  private final PasswordEncoder passwordEncoder;
+
 
     public AuthService(AuthenticationManager authenticationManager, JwtService jwtService, UserRepository userRepository){
-       // public AuthService(AuthenticationManager authenticationManager, JwtService jwtService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+
             this.authenticationManager = authenticationManager;
             this.jwtService = jwtService;
             this.userRepository = userRepository;
-        //    this.passwordEncoder = passwordEncoder;
+
         }
 
         public String authenticate(String username, String rawPassword) {
 
-        /*
-            User user = userRepository.findByUsername(username)
-                    .orElseThrow(() -> new UsernameNotFoundException("Nombre de usuario no encontrado"));
 
-            if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
-                throw new BadCredentialsException("Credenciales incorrectes");
-            }
-
-
-
-            Authentication authentication = authenticationManager.authenticate
-                    (new UsernamePasswordAuthenticationToken(user, rawPassword));
-
-*/
 
             Authentication authentication = authenticationManager.authenticate
                     (new UsernamePasswordAuthenticationToken(username, rawPassword));

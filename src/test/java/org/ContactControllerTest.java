@@ -6,7 +6,7 @@ import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.mapper.ContactMapper;
 import com.propydis.studio.model.mysql.Contact;
 import com.propydis.studio.model.mysql.ContactStatus;
-import com.propydis.studio.service.mysql.ContactService;
+import com.propydis.studio.service.ContactService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;

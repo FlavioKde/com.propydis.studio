@@ -1,4 +1,4 @@
-package com.propydis.studio.service.mysql;
+package com.propydis.studio.service;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.Role;

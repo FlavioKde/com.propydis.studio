@@ -43,6 +43,7 @@ application-*.properties
 .env.local
 .env.*.local
 *.keystore
+.env
 
 
 ### Logs ###

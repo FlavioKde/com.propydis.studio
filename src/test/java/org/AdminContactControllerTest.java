@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.propydis.studio.controller.AdminContactController;
 import com.propydis.studio.model.mysql.Contact;
 import com.propydis.studio.model.mysql.ContactStatus;
-import com.propydis.studio.service.mysql.ContactService;
+import com.propydis.studio.service.ContactService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

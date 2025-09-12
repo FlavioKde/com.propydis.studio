@@ -1,76 +1,4 @@
-/*
-
-package com.propydis.studio.service.mongodb;
-
-
-
-import com.propydis.studio.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.model.mongodb.Property;
-import com.propydis.studio.repository.mongodb.PropertyRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-@Service
-public class PropertyService {
-
-    private PropertyRepository propertyRepository;
-
-    public PropertyService(PropertyRepository propertyRepository) {
-        this.propertyRepository = propertyRepository;
-    }
-
-    public Property save(Property property) {
-
-        validatedPrice(property);
-        return propertyRepository.save(property);
-
-    }
-
-    public Property update(Property property, String id) {
-        Property existing = propertyRepository.findById(id)
-                .orElseThrow(() -> new NotFoundByIdException(id, "property"));
-
-        existing.setName(property.getName());
-        existing.setDescription(property.getDescription());
-        existing.setPhotos(property.getPhotos());
-        existing.setPropertyStatus(property.getPropertyStatus());
-        existing.setPriceValue(property.getPriceValue());
-        existing.setPriceText(property.getPriceText());
-        validatedPrice(existing);
-
-        return propertyRepository.save(existing);
-    }
-
-    public List<Property> findAll() {
-        return propertyRepository.findAll();
-    }
-
-    public Property findById(String id) {
-        return propertyRepository.findById(id)
-                .orElseThrow(() -> new NotFoundByIdException(id, "property"));
-    }
-
-    public void deleteById(String id) {
-        Property existing = propertyRepository.findById(id)
-                .orElseThrow(() -> new NotFoundByIdException(id, "property"));
-
-        propertyRepository.delete(existing);
-    }
-
-    public void validatedPrice(Property property) {
-        if (property.getPriceText() == null && property.getPriceValue() == null) {
-            throw new IllegalArgumentException("Debe especificarse un precio o una descripción.");
-        }
-    }
-}
-
-
- */
-
-
-
-package com.propydis.studio.service.mongodb;
+package com.propydis.studio.service;
 
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
@@ -80,6 +8,9 @@ import com.propydis.studio.model.mongodb.Photo;
 import com.propydis.studio.model.mongodb.Property;
 import com.propydis.studio.repository.mongodb.PhotoRepository;
 import com.propydis.studio.repository.mongodb.PropertyRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -110,6 +41,7 @@ public class PropertyService {
         return propertyRepository.save(property);
     }
 
+    @CachePut(value = "property", key = "#id")
     public Property update(Property property,
                            List<Photo> newPhotos,
                            List<String> deletePhotoIds,
@@ -147,15 +79,18 @@ public class PropertyService {
         return propertyRepository.save(existing);
     }
 
+    @Cacheable(value = "allProperties")
     public List<Property> findAll() {
         return propertyRepository.findAll();
     }
 
+    @Cacheable(value = "property", key = "#id")
     public Property findById(String id) {
         return propertyRepository.findById(id)
                 .orElseThrow(() -> new NotFoundByIdException(id, "property"));
     }
 
+    @CacheEvict(value = "property", key = "#id")
     public void deleteById(String id) {
         Property existing = findById(id);
 
@@ -174,6 +109,7 @@ public class PropertyService {
         propertyRepository.delete(existing);
     }
 
+    @Cacheable(value = "property", key = "#id")
     public PropertyDTO getPropertyDTOById(String id) {
         Property property = findById(id);
         List<Photo> photos = photoRepository.findAllById(property.getPhotoIds());
