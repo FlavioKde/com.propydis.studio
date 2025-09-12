@@ -197,11 +197,13 @@ The project is actively evolving. Below is a summary of current progress and pla
 - Integration with MongoDB Atlas and Railway MySQL
 - JWT-based authentication (admin only)
 - API documentation via Swagger
+
 🧪 v0.2 – In Progress
 - WebSocket-based chat between registered users and admin
 - New role: Registered User with access to chat features
 - User homepage with personalized content
 - Admin panel extended to manage users and roles
+
 🔮 v0.3 – Planned
 - Refactor architecture into microservices
 - Separate services for authentication, property management, and messaging
