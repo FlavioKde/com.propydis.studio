@@ -11,11 +11,11 @@ Aplication web for displaying architectural projects and properties for sale, wi
 ```text
 
 - **Project**: id, name, description, List<Photo>, CreatedAt, UpdatedAt, status
-- **Property**: id, name, description, List<Photo>, CreatedAt, UpdatedAt, status
+- **Property**: id, name, description, List<Photo>, CreatedAt, UpdatedAt, status, PriceValue, PriceText
 - **User**: id, username, email, passwordHash
 - **Role**: id,name <<enum: READER, USER, ADMIN>>
 - **Contact**: id, name, email, message, CreatedAt, status
-- **Photos**: id, url, altText
+- **Photos**: id, url, altText, publicId
 - **ProjectStatus**: ACTIVE, ARCHIVED
 - **PropertyStatus**: AVAILABLE, RESERVED, SOLD
 - **ContactStatus**: NEW, VIEWED, REPLIED
@@ -54,6 +54,7 @@ Aplication web for displaying architectural projects and properties for sale, wi
 ```
 ---
 Author: [FlavioKde](https://github.com/FlavioKde)
+
 
 
 
