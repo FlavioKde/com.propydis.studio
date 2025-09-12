@@ -1,5 +1,23 @@
 # com.propydis
-# Propydis
+
+## 🚀 Web Application for Architecture Studio
+
+```text
+This project is a web application composed of two independent modules:
+- Backend: A RESTful API built with Spring Boot, responsible for business logic, data persistence, security management, role-based access control, and endpoint exposure.
+- Frontend: A user interface developed with React + Vite, designed to consume the API and deliver a fast, modern, and responsive experience.
+The project is currently under active development and is intended to be deployed to production upon completion.
+
+```
+## 🎯 Purpose
+
+```text
+The application is designed for an architecture studio that needs to showcase to its clients:
+- Properties available for sale or rent.
+- Architectural projects completed by the studio.
+The system supports multiple user roles, enabling differentiated content management and functionality based on access level (e.g., administrator, client, visitor).
+
+```
 
 ## 📦 dependencies(build.gradle.kts)
 
