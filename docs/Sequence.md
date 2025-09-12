@@ -3,7 +3,7 @@
 
 sequenceDiagram
   participant R as React Auth
-  participant API as FetchApi
+  participant API as Axios
   participant SEC as Spring Security + JwtFilter
   participant C as Controller
   participant S as Service
@@ -27,6 +27,7 @@ sequenceDiagram
 
 
 ```
+
 
 
 
