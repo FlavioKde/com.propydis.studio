@@ -19,6 +19,18 @@ The system supports multiple user roles, enabling differentiated content managem
 
 ```
 
+## 📚 Documentation
+
+```text
+This repository includes detailed technical documentation located in the  folder:
+• 	 – Overview of the system architecture, including module separation, data flow, and design decisions.
+• 	 – Description of core business rules, use cases, and domain logic.
+• 	 – Functional and non-functional requirements, including user stories and acceptance criteria.
+• 	 – Sequence diagrams illustrating key interactions between components and user flows.
+These documents are intended to provide clarity for future contributors, stakeholders, and deployment teams. They reflect the current development phase and will be updated as the project evolves.
+
+```
+
 ## 📦 dependencies(build.gradle.kts)
 
 ```groovy
