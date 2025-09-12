@@ -81,7 +81,6 @@ cd com.propydis.studio
 ```
 ### - Set environment variables
 
-```text
 You can use .env or configure application.properties to connect to your remote databases:
 
 ```bash
@@ -115,9 +114,8 @@ npm install
 
 ### - Configure API endpoint
 
-```text
-Set the backend URL in .env or directly in your API service:
-```
+- Set the backend URL in .env or directly in your API service:
+
 ```bash
 VITE_API_URL=http://localhost:8080
 ```
@@ -134,51 +132,103 @@ When deploying to Render, you’ll need to:
 - Create a Static Site or Web Service for the frontend, depending on whether you’re building it or serving it dynamically.
 - Ensure CORS is properly configured in your backend to allow requests from your frontend domain.
 - Optionally, use Render’s environment groups to manage shared variables.
-You can add a note like:
-Note: The backend connects to external databases (MongoDB Atlas and Railway MySQL), so no local database setup is required.
 
+⚠️ **Warning:**: The backend connects to external databases (MongoDB Atlas and Railway MySQL), so no local database setup is required.
 
+### 📦 API Reference
 
+This project uses SpringDoc OpenAPI to automatically generate and expose interactive API documentation via Swagger UI.
+Once the backend is running, you can access the documentation at:
 
-
-
-
-## 📦 dependencies(build.gradle.kts)
-
-```groovy
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.5.4'
-    id 'io.spring.dependency-management' version '1.1.0'
-}
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:3.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.4'
-    implementation 'org.springframework.security:spring-security-core:6.5.4'
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
-
-    // JWT
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-
-    // Lombok (opcional)
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok:1.18.34'
-    testCompileOnly 'org.projectlombok:lombok:1.18.34'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
-
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:3.5.4'
-
-    runtimeOnly 'com.mysql:mysql-connector-j:8.1.0'
-
-    // Testing
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.4'
-    testImplementation 'org.mockito:mockito-core:5.11.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:5.11.0'
-    testImplementation 'io.projectreactor:reactor-test:1.5.14'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.0'
-}
+```bash
+http://localhost:8080/swagger-ui.html
 ```
+Or, if deployed
+
+```bash
+http://your-back-domain.com/swagger-ui.html
+```
+
+### The API includes endpoints for:
+
+- 🔐 Authentication & Authorization
+- POST /auth/login
+
+- 🏘️ Property
+- GET /property/{id}
+- POST /Admin/property/save (admin only)
+- GET /property/getAll
+- PUT /admin/property/{id} (admin only)
+- DELETE /admin/property/delete/{id} (admin only)
+  
+- 🏗️ Projects
+
+- GET /project/{id}
+- POST /admin/project/save (admin only)
+- GET /project/getAll
+
+All endpoints follow RESTful conventions and return standard HTTP status codes. Authentication is handled via JWT tokens, and role-based access is enforced across protected routes.
+
+
+## 👥 Roles & Permissions
+
+The application currently supports two user roles:
+- 🕵️‍♂️ Visitor (Reader)
+- No authentication required
+- Can browse public content such as available properties and architectural projects
+- Cannot access the dashboard or perform any administrative actions
+- 🛠️ Admin
+- Requires authentication via login
+- Full access to the dashboard
+- Can create, edit, and delete properties and projects
+- Manages media uploads and content visibility
+- Future scope includes user management and role assignment
+
+⚠️ **Warning:**: Role-based access control is enforced via Spring Security and JWT authentication.
+
+## 📈 Roadmap & Status
+
+The project is actively evolving. Below is a summary of current progress and planned features:
+
+✅ v0.1 – Current Version
+- Public-facing frontend with property and project listings
+- Admin dashboard for content management
+- Role-based access: Visitor (reader) and Admin
+- Integration with MongoDB Atlas and Railway MySQL
+- JWT-based authentication (admin only)
+- API documentation via Swagger
+🧪 v0.2 – In Progress
+- WebSocket-based chat between registered users and admin
+- New role: Registered User with access to chat features
+- User homepage with personalized content
+- Admin panel extended to manage users and roles
+🔮 v0.3 – Planned
+- Refactor architecture into microservices
+- Separate services for authentication, property management, and messaging
+- Improved scalability and deployment flexibility
+
+⚠️ **Warning:**: All roadmap items are subject to refinement based on feedback and presentation outcomes.
+
+## 🤝 Contributing
+Contributions are welcome! If you'd like to improve the project, fix bugs, or suggest new features, feel free to fork the repository and submit a pull request.
+Please make sure to follow the existing code style and include relevant documentation when applicable.
+
+## 📄 License
+This project is licensed under the MIT License.
+You are free to use, modify, and distribute it with proper attribution.
+
+## 📬 Contact
+
+For questions, feedback, or collaboration inquiries:
+- Author: Flavio
+- Location: Barcelona, Cataluña, España
+- Email: [flaviodavirro@gmail.com]
+- LinkedIn / Portfolio / GitHub: [Add links if available]
+
+
+
+
+
+
+
+
