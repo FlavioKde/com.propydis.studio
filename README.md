@@ -22,7 +22,7 @@ The system supports multiple user roles, enabling differentiated content managem
 ## 📚 Documentation
 
 ```text
-This repository includes detailed technical documentation located in the  folder:
+This repository includes detailed technical documentation located in the docs/folder:
 • 	 – Overview of the system architecture, including module separation, data flow, and design decisions.
 • 	 – Description of core business rules, use cases, and domain logic.
 • 	 – Functional and non-functional requirements, including user stories and acceptance criteria.
@@ -30,6 +30,118 @@ This repository includes detailed technical documentation located in the  folder
 These documents are intended to provide clarity for future contributors, stakeholders, and deployment teams. They reflect the current development phase and will be updated as the project evolves.
 
 ```
+
+## 🛠️ Tech Stack
+
+```text
+This project leverages a modern and robust technology stack to ensure scalability, security, and maintainability:
+🔧 Backend – Spring Boot (Java 21)
+- Spring Boot 3.5.4 – Core framework for building RESTful APIs
+- Spring Data JPA & JDBC – Relational database access
+- Spring Data MongoDB – NoSQL support
+- JWT (JSON Web Tokens) – Stateless user authentication
+- Spring Validation – Input validation
+- SpringDoc OpenAPI – Auto-generated API documentation
+- Logstash Logback Encoder – Structured logging
+- Caffeine – In-memory caching
+- Cloudinary – Media upload and management
+- Dotenv – Environment variable management
+- Lombok – Boilerplate code reduction
+- MySQL Connector – Database driver
+- DevTools – Hot reload during development
+- JUnit, Mockito, Reactor Test – Testing framework
+
+```
+
+## ⚛️ Frontend – React + Vite
+
+```text
+• 	React – Component-based UI library
+• 	Vite – Fast build tool and development server
+• 	Axios / Fetch – API consumption
+• 	React Router – Client-side routing
+• 	Tailwind / Styled Components / CSS Modules – (depending on your styling choice)
+
+```
+
+## 🚀 Installation & Setup
+
+### 🖥️ Local Development
+
+```text
+To run the project locally, follow these steps:
+🔧 Backend (Spring Boot)
+
+```
+### - Clone the repository
+
+```bash
+git clone https://github.com/FlavioKde/com.propydis.studio.git
+cd com.propydis.studio
+```
+### - Set environment variables
+
+```text
+You can use .env or configure application.properties to connect to your remote databases:
+
+```bash
+spring.datasource.url=jdbc:mysql://your-railway-host/dbname
+spring.datasource.username=your-username
+spring.datasource.password=your-password
+
+spring.data.mongodb.uri=mongodb+srv://your-mongo-uri
+```
+
+### Run the application
+
+```bash
+./gradlew bootRun
+```
+
+## ⚛️ Frontend (React + Vite)
+
+### - Clone the repository
+
+```bash
+git clone https://github.com/FlavioKde/com.propydis.studio.web.git
+cd frontend-repo
+```
+
+### - Install dependencies
+
+```bash
+npm install
+```
+
+### - Configure API endpoint
+
+```text
+Set the backend URL in .env or directly in your API service:
+```
+```bash
+VITE_API_URL=http://localhost:8080
+```
+### Run the frontend
+
+```bash
+npm run dev
+```
+
+### ☁️ Deployment (Render)
+
+When deploying to Render, you’ll need to:
+- Create a Web Service for the backend and set the environment variables (Mongo URI, MySQL credentials).
+- Create a Static Site or Web Service for the frontend, depending on whether you’re building it or serving it dynamically.
+- Ensure CORS is properly configured in your backend to allow requests from your frontend domain.
+- Optionally, use Render’s environment groups to manage shared variables.
+You can add a note like:
+Note: The backend connects to external databases (MongoDB Atlas and Railway MySQL), so no local database setup is required.
+
+
+
+
+
+
 
 ## 📦 dependencies(build.gradle.kts)
 
