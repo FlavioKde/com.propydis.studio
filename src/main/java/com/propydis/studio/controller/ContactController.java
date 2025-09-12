@@ -6,10 +6,9 @@ import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.dto.mysql.mapper.ContactMapper;
 import com.propydis.studio.model.mysql.Contact;
-import com.propydis.studio.service.mysql.ContactService;
+import com.propydis.studio.service.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

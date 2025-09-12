@@ -4,7 +4,7 @@ import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.model.mysql.Contact;
 import com.propydis.studio.model.mysql.ContactStatus;
 import com.propydis.studio.repository.mysql.ContactRepository;
-import com.propydis.studio.service.mysql.ContactService;
+import com.propydis.studio.service.ContactService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

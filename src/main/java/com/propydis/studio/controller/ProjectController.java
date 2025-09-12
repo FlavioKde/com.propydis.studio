@@ -2,12 +2,8 @@ package com.propydis.studio.controller;
 
 
 import com.propydis.studio.config.ApiConfig;
-import com.propydis.studio.dto.mongodb.ProjectCreateDTO;
 import com.propydis.studio.dto.mongodb.ProjectDTO;
-import com.propydis.studio.dto.mongodb.mapper.ProjectMapper;
-import com.propydis.studio.model.mongodb.Project;
-import com.propydis.studio.service.mongodb.ProjectService;
-import jakarta.validation.Valid;
+import com.propydis.studio.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

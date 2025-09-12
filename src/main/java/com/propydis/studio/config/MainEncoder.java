@@ -6,7 +6,7 @@ public class MainEncoder {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String plainPassword = "admin123"; // Tu password real
+        String plainPassword = "admin123";
         String hashedPassword = encoder.encode(plainPassword);
         System.out.println("Hash: " + hashedPassword);
         System.out.println("Longitud: " + hashedPassword.length());

@@ -7,7 +7,7 @@ import com.propydis.studio.model.mongodb.Property;
 import com.propydis.studio.model.mongodb.PropertyStatus;
 import com.propydis.studio.repository.mongodb.PhotoRepository;
 import com.propydis.studio.repository.mongodb.PropertyRepository;
-import com.propydis.studio.service.mongodb.PropertyService;
+import com.propydis.studio.service.PropertyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
