@@ -22,7 +22,7 @@ public class PropertyController {
             this.propertyService = propertyService;
         }
 
-        @Cacheable(value = "allProperties")
+
         @GetMapping("/getAll")
         public ResponseEntity<List<PropertyDTO>> getAll() {
 
@@ -36,7 +36,7 @@ public class PropertyController {
 
         }
 
-        @Cacheable(value = "property", key = "#id")
+
         @GetMapping("/get/{id}")
         public ResponseEntity<PropertyDTO> getById(@PathVariable String id) {
 
