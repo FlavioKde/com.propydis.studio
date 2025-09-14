@@ -41,7 +41,7 @@ public class PropertyService {
         return propertyRepository.save(property);
     }
 
-    @CachePut(value = "property", key = "#id")
+
     public Property update(Property property,
                            List<Photo> newPhotos,
                            List<String> deletePhotoIds,
@@ -79,7 +79,7 @@ public class PropertyService {
         return propertyRepository.save(existing);
     }
 
-    @Cacheable(value = "allProperties")
+
     public List<Property> findAll() {
         return propertyRepository.findAll();
     }
@@ -90,7 +90,7 @@ public class PropertyService {
                 .orElseThrow(() -> new NotFoundByIdException(id, "property"));
     }
 
-    @CacheEvict(value = "property", key = "#id")
+
     public void deleteById(String id) {
         Property existing = findById(id);
 
@@ -109,7 +109,7 @@ public class PropertyService {
         propertyRepository.delete(existing);
     }
 
-    @Cacheable(value = "property", key = "#id")
+
     public PropertyDTO getPropertyDTOById(String id) {
         Property property = findById(id);
         List<Photo> photos = photoRepository.findAllById(property.getPhotoIds());
