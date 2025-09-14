@@ -1,4 +1,4 @@
-# com.propydis
+# com.propydis.studio
 
 ## 🚀 Web Application for Architecture Studio
 
