@@ -1,6 +1,7 @@
 package com.propydis.studio.dto.mongodb;
 
-import com.propydis.studio.model.mongodb.ProjectStatus;
+import com.propydis.studio.domain.project.ProjectStatus;
+import com.propydis.studio.dto.project.PhotoDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;

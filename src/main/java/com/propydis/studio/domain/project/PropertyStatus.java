@@ -1,4 +1,4 @@
-package com.propydis.studio.model.mongodb;
+package com.propydis.studio.domain.project;
 
 public enum PropertyStatus {
     AVAILABLE,

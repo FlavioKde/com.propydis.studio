@@ -5,7 +5,7 @@ import com.propydis.studio.config.ApiConfig;
 import com.propydis.studio.dto.mysql.ContactCreateDTO;
 import com.propydis.studio.dto.mysql.ContactDTO;
 import com.propydis.studio.dto.mysql.mapper.ContactMapper;
-import com.propydis.studio.model.mysql.Contact;
+import com.propydis.studio.domain.user.Contact;
 import com.propydis.studio.service.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

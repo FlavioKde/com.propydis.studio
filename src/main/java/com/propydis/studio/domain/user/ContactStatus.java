@@ -1,4 +1,4 @@
-package com.propydis.studio.model.mysql;
+package com.propydis.studio.domain.user;
 
 public enum ContactStatus {
     NEW,

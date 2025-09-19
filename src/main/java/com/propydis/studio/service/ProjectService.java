@@ -5,10 +5,10 @@ import java.util.List;
 import com.propydis.studio.dto.mongodb.ProjectDTO;
 import com.propydis.studio.dto.mongodb.mapper.ProjectMapper;
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
-import com.propydis.studio.model.mongodb.Photo;
-import com.propydis.studio.model.mongodb.Project;
-import com.propydis.studio.repository.mongodb.PhotoRepository;
+import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
+import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.Project;
+import com.propydis.studio.domain.project.repository.PhotoRepository;
 import com.propydis.studio.repository.mongodb.ProjectRepository;
 import org.springframework.stereotype.Service;
 
@@ -50,11 +50,11 @@ public class ProjectService {
             Project existing = projectRepository.findById(id)
                     .orElseThrow(() -> new NotFoundByIdException(id, "project"));
 
-            // Actualizar campos básicos
+
             existing.setName(project.getName());
             existing.setDescription(project.getDescription());
 
-            // Eliminar fotos individuales
+
             if (deletePhotoIds != null && !deletePhotoIds.isEmpty()) {
                 for (String photoId : deletePhotoIds) {
                     Photo photo = photoRepository.findById(photoId).orElse(null);
@@ -70,7 +70,7 @@ public class ProjectService {
                 existing.getPhotoIds().removeAll(deletePhotoIds);
             }
 
-            // Agregar nuevas fotos
+
             if (newPhotos != null && !newPhotos.isEmpty()) {
                 List<Photo> savedPhotos = photoRepository.saveAll(newPhotos);
                 List<String> newPhotoIds = savedPhotos.stream()

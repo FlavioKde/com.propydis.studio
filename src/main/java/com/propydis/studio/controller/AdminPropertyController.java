@@ -1,14 +1,14 @@
 package com.propydis.studio.controller;
 
 import com.propydis.studio.config.ApiConfig;
-import com.propydis.studio.dto.mongodb.PhotoDTO;
+import com.propydis.studio.dto.project.PhotoDTO;
 import com.propydis.studio.dto.mongodb.PropertyCreateDTO;
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
-import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
-import com.propydis.studio.infrastucture.validation.ImageValidator;
-import com.propydis.studio.model.mongodb.Photo;
-import com.propydis.studio.model.mongodb.Property;
+import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
+import com.propydis.studio.infrastructure.validation.ImageValidator;
+import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.Property;
 import com.propydis.studio.service.PropertyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
