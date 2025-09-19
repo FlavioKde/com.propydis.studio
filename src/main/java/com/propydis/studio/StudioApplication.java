@@ -4,8 +4,10 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @EnableCaching
+@EnableMongoRepositories(basePackages = "com.propydis.studio.infrastructure.persistence.mongodb.project")
 @SpringBootApplication
 public class StudioApplication {
 

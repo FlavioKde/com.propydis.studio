@@ -1,7 +1,7 @@
 package com.propydis.studio.service;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.model.mysql.Role;
+import com.propydis.studio.domain.user.Role;
 import com.propydis.studio.repository.mysql.RoleRepository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.propydis.studio.service;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.model.mysql.User;
+import com.propydis.studio.domain.user.User;
 import com.propydis.studio.repository.mysql.UserRepository;
 import org.springframework.stereotype.Service;
 

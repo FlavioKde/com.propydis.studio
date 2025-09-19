@@ -1,4 +1,4 @@
-package com.propydis.studio.infrastucture.validation;
+package com.propydis.studio.infrastructure.validation;
 
 
 import org.springframework.web.multipart.MultipartFile;

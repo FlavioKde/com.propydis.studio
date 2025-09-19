@@ -1,6 +1,6 @@
 package com.propydis.studio.dto.mysql;
 
-import com.propydis.studio.model.mysql.RoleType;
+import com.propydis.studio.domain.user.RoleType;
 
 
 public class RoleDTO {

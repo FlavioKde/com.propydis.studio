@@ -1,38 +1,49 @@
-package com.propydis.studio.model.mongodb;
+package com.propydis.studio.domain.project;
 
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "project")
-public class Project {
-   @Id
+@Document(collection = "property")
+public class Property {
+
+    @Id
     private String id;
     private String name;
     private String description;
     private List<String> photoIds = new ArrayList<>();
+
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
-    private ProjectStatus projectStatus;
+    private PropertyStatus propertyStatus;
+    private BigDecimal priceValue;
+    private String priceText;
 
-    public Project() {}
+    public Property() {}
 
-    public Project(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt,  ProjectStatus projectStatus) {
+
+
+    public Property(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus,  BigDecimal priceValue, String priceText) {
         this.name = name;
         this.description = description;
         this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.projectStatus = projectStatus;
+        this.propertyStatus = propertyStatus;
+        this.priceValue = priceValue;
+        this.priceText = priceText;
+
     }
+
+
 
     public String getId() {
         return id;
@@ -51,7 +62,7 @@ public class Project {
     }
 
     public String getDescription() {
-        return description;
+         return  description;
     }
 
     public void setDescription(String description) {
@@ -65,6 +76,7 @@ public class Project {
     public void setPhotoIds(List<String> photoIds) {
         this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
     }
+
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -82,13 +94,27 @@ public class Project {
         this.updatedAt = updatedAt;
     }
 
-    public ProjectStatus getProjectStatus() {
-        return projectStatus;
+    public PropertyStatus getPropertyStatus() {
+        return propertyStatus;
     }
 
-    public void setProjectStatus(ProjectStatus projectStatus) {
-        this.projectStatus = projectStatus;
+    public void setPropertyStatus(PropertyStatus propertyStatus) {
+        this.propertyStatus = propertyStatus;
     }
 
+    public BigDecimal getPriceValue() {
+        return priceValue;
+    }
 
+    public void setPriceValue(BigDecimal priceValue) {
+        this.priceValue = priceValue;
+    }
+
+    public String getPriceText() {
+        return priceText;
+    }
+
+    public void setPriceText(String priceText) {
+        this.priceText = priceText;
+    }
 }

@@ -1,6 +1,6 @@
 package com.propydis.studio.shared.exception.exceptions;
 
-import com.propydis.studio.model.mysql.Role;
+import com.propydis.studio.domain.user.Role;
 
 public class AccessDeniedException extends RuntimeException {
     public AccessDeniedException(Role roleType) {

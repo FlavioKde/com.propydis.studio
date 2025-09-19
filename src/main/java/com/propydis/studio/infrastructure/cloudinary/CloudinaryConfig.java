@@ -1,4 +1,4 @@
-package com.propydis.studio.infrastucture.cloudinary;
+package com.propydis.studio.infrastructure.cloudinary;
 
 
 import org.springframework.beans.factory.annotation.Value;

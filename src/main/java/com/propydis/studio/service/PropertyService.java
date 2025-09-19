@@ -3,13 +3,11 @@ package com.propydis.studio.service;
 import com.propydis.studio.dto.mongodb.PropertyDTO;
 import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
-import com.propydis.studio.model.mongodb.Photo;
-import com.propydis.studio.model.mongodb.Property;
-import com.propydis.studio.repository.mongodb.PhotoRepository;
+import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
+import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.Property;
+import com.propydis.studio.domain.project.repository.PhotoRepository;
 import com.propydis.studio.repository.mongodb.PropertyRepository;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 

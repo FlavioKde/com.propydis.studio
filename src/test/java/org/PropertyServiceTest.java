@@ -1,11 +1,11 @@
 package org;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.infrastucture.cloudinary.CloudinaryService;
-import com.propydis.studio.model.mongodb.Photo;
-import com.propydis.studio.model.mongodb.Property;
-import com.propydis.studio.model.mongodb.PropertyStatus;
-import com.propydis.studio.repository.mongodb.PhotoRepository;
+import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
+import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.Property;
+import com.propydis.studio.domain.project.PropertyStatus;
+import com.propydis.studio.domain.project.repository.PhotoRepository;
 import com.propydis.studio.repository.mongodb.PropertyRepository;
 import com.propydis.studio.service.PropertyService;
 import org.junit.jupiter.api.BeforeEach;

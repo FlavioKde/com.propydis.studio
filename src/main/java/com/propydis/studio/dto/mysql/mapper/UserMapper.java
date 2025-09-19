@@ -3,7 +3,7 @@ package com.propydis.studio.dto.mysql.mapper;
 
 import com.propydis.studio.dto.mysql.UserCreateDTO;
 import com.propydis.studio.dto.mysql.UserDTO;
-import com.propydis.studio.model.mysql.User;
+import com.propydis.studio.domain.user.User;
 
 import java.util.stream.Collectors;
 
