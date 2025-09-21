@@ -1,9 +1,9 @@
-package com.propydis.studio.dto.mysql.mapper;
+package com.propydis.studio.shared.mapper;
 
-import com.propydis.studio.dto.mysql.ContactCreateDTO;
-import com.propydis.studio.dto.mysql.ContactDTO;
-import com.propydis.studio.domain.user.Contact;
-import com.propydis.studio.domain.user.ContactStatus;
+import com.propydis.studio.dto.user.contact.ContactCreateDTO;
+import com.propydis.studio.dto.user.contact.ContactDTO;
+import com.propydis.studio.domain.user.contact.Contact;
+import com.propydis.studio.domain.user.contact.ContactStatus;
 
 import java.time.LocalDateTime;
 

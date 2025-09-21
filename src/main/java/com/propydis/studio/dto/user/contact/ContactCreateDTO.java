@@ -1,4 +1,4 @@
-package com.propydis.studio.dto.mysql;
+package com.propydis.studio.dto.user.contact;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

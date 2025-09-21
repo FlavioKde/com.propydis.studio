@@ -1,4 +1,4 @@
-package com.propydis.studio.domain.user;
+package com.propydis.studio.domain.user.contact;
 
 
 import jakarta.persistence.*;

@@ -2,12 +2,12 @@ package com.propydis.studio.controller;
 
 
 import com.propydis.studio.config.ApiConfig;
-import com.propydis.studio.dto.mysql.ContactCreateDTO;
-import com.propydis.studio.dto.mysql.ContactDTO;
-import com.propydis.studio.dto.mysql.mapper.ContactMapper;
-import com.propydis.studio.domain.user.Contact;
-import com.propydis.studio.domain.user.ContactStatus;
-import com.propydis.studio.service.ContactService;
+import com.propydis.studio.dto.user.contact.ContactCreateDTO;
+import com.propydis.studio.dto.user.contact.ContactDTO;
+import com.propydis.studio.shared.mapper.ContactMapper;
+import com.propydis.studio.domain.user.contact.Contact;
+import com.propydis.studio.domain.user.contact.ContactStatus;
+import com.propydis.studio.application.user.contact.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

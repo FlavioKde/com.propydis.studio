@@ -1,10 +1,10 @@
 package org;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.domain.user.Contact;
-import com.propydis.studio.domain.user.ContactStatus;
-import com.propydis.studio.repository.mysql.ContactRepository;
-import com.propydis.studio.service.ContactService;
+import com.propydis.studio.domain.user.contact.Contact;
+import com.propydis.studio.domain.user.contact.ContactStatus;
+import com.propydis.studio.domain.user.contact.repository.ContactRepository;
+import com.propydis.studio.application.user.contact.ContactService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

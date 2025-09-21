@@ -2,11 +2,11 @@ package org;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.propydis.studio.controller.ContactController;
-import com.propydis.studio.dto.mysql.ContactCreateDTO;
-import com.propydis.studio.dto.mysql.mapper.ContactMapper;
-import com.propydis.studio.domain.user.Contact;
-import com.propydis.studio.domain.user.ContactStatus;
-import com.propydis.studio.service.ContactService;
+import com.propydis.studio.dto.user.contact.ContactCreateDTO;
+import com.propydis.studio.shared.mapper.ContactMapper;
+import com.propydis.studio.domain.user.contact.Contact;
+import com.propydis.studio.domain.user.contact.ContactStatus;
+import com.propydis.studio.application.user.contact.ContactService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;

@@ -1,6 +1,6 @@
-package com.propydis.studio.dto.mysql;
+package com.propydis.studio.dto.user.contact;
 
-import com.propydis.studio.domain.user.ContactStatus;
+import com.propydis.studio.domain.user.contact.ContactStatus;
 
 import java.time.LocalDateTime;
 
