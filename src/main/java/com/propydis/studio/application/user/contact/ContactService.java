@@ -1,9 +1,9 @@
-package com.propydis.studio.service;
+package com.propydis.studio.application.user.contact;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.domain.user.Contact;
-import com.propydis.studio.domain.user.ContactStatus;
-import com.propydis.studio.repository.mysql.ContactRepository;
+import com.propydis.studio.domain.user.contact.Contact;
+import com.propydis.studio.domain.user.contact.ContactStatus;
+import com.propydis.studio.domain.user.contact.repository.ContactRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class ContactService {
         Contact existing = contactRepository.findById(id)
                 .orElseThrow(()-> new NotFoundByIdException(id, "contact"));
 
-        contactRepository.delete(existing);
+        contactRepository.deleteById(existing.getId());
     }
 
 

@@ -1,4 +1,4 @@
-package com.propydis.studio.domain.user;
+package com.propydis.studio.domain.user.contact;
 
 public enum ContactStatus {
     NEW,

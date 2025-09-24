@@ -1,10 +1,9 @@
-package com.propydis.studio.dto.mongodb.mapper;
+package com.propydis.studio.shared.mapper;
 
-import com.propydis.studio.dto.mongodb.ProjectCreateDTO;
-import com.propydis.studio.dto.mongodb.ProjectDTO;
+import com.propydis.studio.dto.project.project.ProjectCreateDTO;
+import com.propydis.studio.dto.project.project.ProjectDTO;
 import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.domain.project.Project;
-import com.propydis.studio.shared.mapper.PhotoDtoMapper;
+import com.propydis.studio.domain.project.project.Project;
 
 import java.util.List;
 import java.util.stream.Collectors;

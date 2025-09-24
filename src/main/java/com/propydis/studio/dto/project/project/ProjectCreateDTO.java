@@ -1,4 +1,4 @@
-package com.propydis.studio.dto.mongodb;
+package com.propydis.studio.dto.project.project;
 
 
 import com.propydis.studio.dto.project.PhotoDTO;
