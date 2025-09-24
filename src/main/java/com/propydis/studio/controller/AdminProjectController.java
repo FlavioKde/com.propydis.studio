@@ -2,14 +2,14 @@ package com.propydis.studio.controller;
 
 
 import com.propydis.studio.config.ApiConfig;
-import com.propydis.studio.dto.mongodb.ProjectCreateDTO;
-import com.propydis.studio.dto.mongodb.ProjectDTO;
-import com.propydis.studio.dto.mongodb.mapper.ProjectMapper;
+import com.propydis.studio.dto.project.project.ProjectCreateDTO;
+import com.propydis.studio.dto.project.project.ProjectDTO;
+import com.propydis.studio.shared.mapper.ProjectMapper;
 import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
 import com.propydis.studio.infrastructure.validation.ImageValidator;
 import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.domain.project.Project;
-import com.propydis.studio.service.ProjectService;
+import com.propydis.studio.domain.project.project.Project;
+import com.propydis.studio.application.project.project.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -123,6 +123,7 @@ public class AdminProjectController {
 
         ProjectDTO responseDTO = projectService.getProjectDTOById(updatedProject.getId());
 
+        System.out.println("📤 DTO con fotos: " + responseDTO.getPhotos().stream().map(p -> p.getUrl()).collect(Collectors.toList()));
         return ResponseEntity.ok(responseDTO);
     }
 

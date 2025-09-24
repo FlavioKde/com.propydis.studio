@@ -1,22 +1,39 @@
-package com.propydis.studio.dto.mongodb;
+package com.propydis.studio.infrastructure.persistence.mongodb.project.project;
 
-import com.propydis.studio.domain.project.ProjectStatus;
-import com.propydis.studio.dto.project.PhotoDTO;
+import com.propydis.studio.domain.project.project.ProjectStatus;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectDTO {
+@Document(collection = "project")
+public class ProjectDocument {
 
+    @Id
     private String id;
     private String name;
     private String description;
-    private List<PhotoDTO> photos;
+    private List<String> photoIds = new ArrayList<>();
+    @CreatedDate
     private LocalDateTime createdAt;
+    @LastModifiedDate
     private LocalDateTime updatedAt;
     private ProjectStatus projectStatus;
 
-    public ProjectDTO() {}
+    public ProjectDocument() {}
+
+    public ProjectDocument(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt,  ProjectStatus projectStatus) {
+        this.name = name;
+        this.description = description;
+        this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.projectStatus = projectStatus;
+    }
 
     public String getId() {
         return id;
@@ -42,12 +59,12 @@ public class ProjectDTO {
         this.description = description;
     }
 
-    public List<PhotoDTO> getPhotos() {
-        return photos;
+    public List<String> getPhotoIds() {
+        return photoIds;
     }
 
-    public void setPhotos(List<PhotoDTO> photos) {
-        this.photos = photos;
+    public void setPhotoIds(List<String> photoIds) {
+        this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
     }
 
     public LocalDateTime getCreatedAt() {

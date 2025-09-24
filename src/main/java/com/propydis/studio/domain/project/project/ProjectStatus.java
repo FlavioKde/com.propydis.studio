@@ -1,4 +1,4 @@
-package com.propydis.studio.domain.project;
+package com.propydis.studio.domain.project.project;
 
 public enum ProjectStatus {
     ACTIVE,
