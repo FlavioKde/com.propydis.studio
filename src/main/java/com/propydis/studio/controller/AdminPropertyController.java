@@ -1,15 +1,15 @@
 package com.propydis.studio.controller;
 
 import com.propydis.studio.config.ApiConfig;
-import com.propydis.studio.dto.project.PhotoDTO;
-import com.propydis.studio.dto.mongodb.PropertyCreateDTO;
-import com.propydis.studio.dto.mongodb.PropertyDTO;
-import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
+import com.propydis.studio.dto.project.photo.PhotoDTO;
+import com.propydis.studio.dto.project.property.PropertyCreateDTO;
+import com.propydis.studio.dto.project.property.PropertyDTO;
+import com.propydis.studio.shared.mapper.PropertyMapper;
 import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
 import com.propydis.studio.infrastructure.validation.ImageValidator;
-import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.domain.project.Property;
-import com.propydis.studio.service.PropertyService;
+import com.propydis.studio.domain.project.photo.Photo;
+import com.propydis.studio.domain.project.property.Property;
+import com.propydis.studio.application.project.property.PropertyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -120,7 +120,7 @@ public class AdminPropertyController {
         dto.setName(name);
         dto.setDescription(description);
         dto.setPriceText(priceText);
-        if (priceValue != null) dto.setPriceValue(new java.math.BigDecimal(priceValue));
+        if (priceValue != null && !priceValue.trim().isEmpty()) dto.setPriceValue(new java.math.BigDecimal(priceValue));
 
         Property property = PropertyMapper.toEntity(dto, newPhotoEntities, id);
         Property updatedProperty = propertyService.update(property, newPhotoEntities, deletePhotoIds, id);

@@ -1,7 +1,7 @@
 package com.propydis.studio.shared.mapper;
 
-import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.dto.project.PhotoDTO;
+import com.propydis.studio.domain.project.photo.Photo;
+import com.propydis.studio.dto.project.photo.PhotoDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

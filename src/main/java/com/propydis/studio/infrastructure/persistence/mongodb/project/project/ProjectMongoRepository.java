@@ -2,7 +2,7 @@ package com.propydis.studio.infrastructure.persistence.mongodb.project.project;
 
 import com.propydis.studio.domain.project.project.Project;
 import com.propydis.studio.domain.project.project.repository.ProjectRepository;
-import com.propydis.studio.domain.project.repository.PhotoRepository;
+import com.propydis.studio.domain.project.photo.repository.PhotoRepository;
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import org.springframework.stereotype.Repository;
 

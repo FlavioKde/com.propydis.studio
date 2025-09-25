@@ -1,7 +1,7 @@
 package com.propydis.studio.dto.project.project;
 
 import com.propydis.studio.domain.project.project.ProjectStatus;
-import com.propydis.studio.dto.project.PhotoDTO;
+import com.propydis.studio.dto.project.photo.PhotoDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;

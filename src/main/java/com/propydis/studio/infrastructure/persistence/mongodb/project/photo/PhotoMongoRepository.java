@@ -1,7 +1,7 @@
-package com.propydis.studio.infrastructure.persistence.mongodb.project;
+package com.propydis.studio.infrastructure.persistence.mongodb.project.photo;
 
-import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.domain.project.repository.PhotoRepository;
+import com.propydis.studio.domain.project.photo.Photo;
+import com.propydis.studio.domain.project.photo.repository.PhotoRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;

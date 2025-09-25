@@ -1,6 +1,6 @@
-package com.propydis.studio.infrastructure.persistence.mongodb.project;
+package com.propydis.studio.infrastructure.persistence.mongodb.project.photo;
 
-import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.photo.Photo;
 
 public class PhotoDocumentMapper {
 

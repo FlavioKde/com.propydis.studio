@@ -2,12 +2,12 @@ package org;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
-import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.domain.project.Property;
-import com.propydis.studio.domain.project.PropertyStatus;
-import com.propydis.studio.domain.project.repository.PhotoRepository;
-import com.propydis.studio.repository.mongodb.PropertyRepository;
-import com.propydis.studio.service.PropertyService;
+import com.propydis.studio.domain.project.photo.Photo;
+import com.propydis.studio.domain.project.property.Property;
+import com.propydis.studio.domain.project.property.PropertyStatus;
+import com.propydis.studio.domain.project.photo.repository.PhotoRepository;
+import com.propydis.studio.domain.project.property.repository.PropertyRepository;
+import com.propydis.studio.application.project.property.PropertyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -159,7 +159,7 @@ public class PropertyServiceTest {
 
         propertyService.deleteById("abc123457");
 
-        verify(propertyRepository, times(1)).delete(property);
+        verify(propertyRepository, times(1)).deleteById(property.getId());
 
     }
     

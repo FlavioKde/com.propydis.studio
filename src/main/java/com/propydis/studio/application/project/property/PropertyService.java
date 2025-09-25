@@ -1,17 +1,19 @@
-package com.propydis.studio.service;
+package com.propydis.studio.application.project.property;
 
-import com.propydis.studio.dto.mongodb.PropertyDTO;
-import com.propydis.studio.dto.mongodb.mapper.PropertyMapper;
+import com.propydis.studio.dto.project.property.PropertyDTO;
+import com.propydis.studio.shared.mapper.PropertyMapper;
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
-import com.propydis.studio.domain.project.Photo;
-import com.propydis.studio.domain.project.Property;
-import com.propydis.studio.domain.project.repository.PhotoRepository;
-import com.propydis.studio.repository.mongodb.PropertyRepository;
+import com.propydis.studio.domain.project.photo.Photo;
+import com.propydis.studio.domain.project.property.Property;
+import com.propydis.studio.domain.project.photo.repository.PhotoRepository;
+import com.propydis.studio.domain.project.property.repository.PropertyRepository;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +38,7 @@ public class PropertyService {
                 .map(Photo::getId)
                 .collect(Collectors.toList());
         property.setPhotoIds(photoIds);
+
         return propertyRepository.save(property);
     }
 
@@ -71,8 +74,18 @@ public class PropertyService {
             List<String> newPhotoIds = savedPhotos.stream()
                     .map(Photo::getId)
                     .collect(Collectors.toList());
+            if (existing.getPhotoIds() == null) {
+                existing.setPhotoIds(new ArrayList<>());
+            }
+
             existing.getPhotoIds().addAll(newPhotoIds);
         }
+
+        existing.setUpdatedAt(LocalDateTime.now());
+        existing.setPropertyStatus(property.getPropertyStatus());
+        existing.setPriceText(property.getPriceText());
+        existing.setPriceValue(property.getPriceValue());
+
 
         return propertyRepository.save(existing);
     }
@@ -90,7 +103,8 @@ public class PropertyService {
 
 
     public void deleteById(String id) {
-        Property existing = findById(id);
+        Property existing = propertyRepository.findById(id)
+                .orElseThrow(() -> new NotFoundByIdException(id, "property"));
 
         for (String photoId : existing.getPhotoIds()) {
             Photo photo = photoRepository.findById(photoId).orElse(null);
@@ -104,13 +118,15 @@ public class PropertyService {
         }
 
         photoRepository.deleteAllById(existing.getPhotoIds());
-        propertyRepository.delete(existing);
+        propertyRepository.deleteById(id);
     }
 
 
     public PropertyDTO getPropertyDTOById(String id) {
         Property property = findById(id);
+
         List<Photo> photos = photoRepository.findAllById(property.getPhotoIds());
+
         return PropertyMapper.toDTO(property, photos);
     }
 }

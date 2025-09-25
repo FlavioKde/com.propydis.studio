@@ -1,8 +1,8 @@
-package com.propydis.studio.dto.mongodb;
+package com.propydis.studio.dto.project.property;
 
 
-import com.propydis.studio.domain.project.PropertyStatus;
-import com.propydis.studio.dto.project.PhotoDTO;
+import com.propydis.studio.domain.project.property.PropertyStatus;
+import com.propydis.studio.dto.project.photo.PhotoDTO;
 
 
 import java.math.BigDecimal;

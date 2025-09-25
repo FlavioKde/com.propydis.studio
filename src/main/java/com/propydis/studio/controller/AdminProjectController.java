@@ -7,7 +7,7 @@ import com.propydis.studio.dto.project.project.ProjectDTO;
 import com.propydis.studio.shared.mapper.ProjectMapper;
 import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
 import com.propydis.studio.infrastructure.validation.ImageValidator;
-import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.photo.Photo;
 import com.propydis.studio.domain.project.project.Project;
 import com.propydis.studio.application.project.project.ProjectService;
 import org.springframework.http.HttpStatus;
