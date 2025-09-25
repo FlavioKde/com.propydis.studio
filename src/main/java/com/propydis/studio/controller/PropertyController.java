@@ -2,9 +2,8 @@ package com.propydis.studio.controller;
 
 
 import com.propydis.studio.config.ApiConfig;
-import com.propydis.studio.dto.mongodb.PropertyDTO;
-import com.propydis.studio.service.PropertyService;
-import org.springframework.cache.annotation.Cacheable;
+import com.propydis.studio.dto.project.property.PropertyDTO;
+import com.propydis.studio.application.project.property.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

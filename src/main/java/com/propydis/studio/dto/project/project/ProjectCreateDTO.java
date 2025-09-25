@@ -1,7 +1,7 @@
 package com.propydis.studio.dto.project.project;
 
 
-import com.propydis.studio.dto.project.PhotoDTO;
+import com.propydis.studio.dto.project.photo.PhotoDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

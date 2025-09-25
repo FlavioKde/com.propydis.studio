@@ -1,5 +1,6 @@
-package com.propydis.studio.domain.project;
+package com.propydis.studio.infrastructure.persistence.mongodb.project.property;
 
+import com.propydis.studio.domain.project.property.PropertyStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "property")
-public class Property {
+public class PropertyDocument {
 
     @Id
     private String id;
@@ -27,11 +28,11 @@ public class Property {
     private BigDecimal priceValue;
     private String priceText;
 
-    public Property() {}
+    public PropertyDocument() {}
 
 
 
-    public Property(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus,  BigDecimal priceValue, String priceText) {
+    public PropertyDocument(String name, String description, List<String> photoIds, LocalDateTime createdAt, LocalDateTime updatedAt, PropertyStatus propertyStatus,  BigDecimal priceValue, String priceText) {
         this.name = name;
         this.description = description;
         this.photoIds = photoIds != null ? photoIds : new ArrayList<>();
@@ -62,7 +63,7 @@ public class Property {
     }
 
     public String getDescription() {
-         return  description;
+        return  description;
     }
 
     public void setDescription(String description) {

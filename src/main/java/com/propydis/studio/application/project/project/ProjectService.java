@@ -8,9 +8,9 @@ import com.propydis.studio.dto.project.project.ProjectDTO;
 import com.propydis.studio.shared.mapper.ProjectMapper;
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
 import com.propydis.studio.infrastructure.cloudinary.CloudinaryService;
-import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.photo.Photo;
 import com.propydis.studio.domain.project.project.Project;
-import com.propydis.studio.domain.project.repository.PhotoRepository;
+import com.propydis.studio.domain.project.photo.repository.PhotoRepository;
 import com.propydis.studio.domain.project.project.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 

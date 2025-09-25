@@ -2,7 +2,7 @@ package com.propydis.studio.shared.mapper;
 
 import com.propydis.studio.dto.project.project.ProjectCreateDTO;
 import com.propydis.studio.dto.project.project.ProjectDTO;
-import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.photo.Photo;
 import com.propydis.studio.domain.project.project.Project;
 
 import java.util.List;

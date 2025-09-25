@@ -1,20 +1,23 @@
-package com.propydis.studio.dto.project;
+package com.propydis.studio.domain.project.photo;
 
 
-public class PhotoDTO {
+
+public class Photo {
 
     private String id;
     private String url;
     private String altText;
     private String publicId;
 
-    public PhotoDTO() {}
+    public Photo() {}
 
-    public PhotoDTO(String url, String altText, String publicId) {
+    public Photo(String url, String altText, String publicId) {
         this.url = url;
         this.altText = altText;
         this.publicId = publicId;
     }
+
+
 
     public String getId() {
         return id;

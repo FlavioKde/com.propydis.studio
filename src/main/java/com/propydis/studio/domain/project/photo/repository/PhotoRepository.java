@@ -1,6 +1,6 @@
-package com.propydis.studio.domain.project.repository;
+package com.propydis.studio.domain.project.photo.repository;
 
-import com.propydis.studio.domain.project.Photo;
+import com.propydis.studio.domain.project.photo.Photo;
 
 import java.util.List;
 import java.util.Optional;

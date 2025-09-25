@@ -1,4 +1,4 @@
-package com.propydis.studio.infrastructure.persistence.mongodb.project;
+package com.propydis.studio.infrastructure.persistence.mongodb.project.photo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
