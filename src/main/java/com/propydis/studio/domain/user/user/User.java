@@ -1,29 +1,18 @@
-package com.propydis.studio.domain.user;
+package com.propydis.studio.domain.user.user;
 
-import jakarta.persistence.*;
+import com.propydis.studio.domain.user.role.Role;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name ="`user`")
+
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-    @Column(unique = true, nullable = false)
     private String username;
-    @Column(unique = true, nullable = false)
     private String email;
-    @Column(unique = true, nullable = false)
     private String password;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
     private List<Role> roles;
 
 

@@ -1,6 +1,6 @@
 package com.propydis.studio.repository.mysql;
 
-import com.propydis.studio.domain.user.User;
+import com.propydis.studio.domain.user.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,8 +1,8 @@
 package com.propydis.studio.auth.service.mysql;
 
 import com.propydis.studio.auth.model.mysql.CustomUserDetails;
-import com.propydis.studio.domain.user.User;
-import com.propydis.studio.repository.mysql.UserRepository;
+import com.propydis.studio.domain.user.user.User;
+import com.propydis.studio.domain.user.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

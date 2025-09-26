@@ -1,7 +1,7 @@
-package com.propydis.studio.dto.mysql.mapper;
+package com.propydis.studio.shared.mapper;
 
-import com.propydis.studio.dto.mysql.RoleDTO;
-import com.propydis.studio.domain.user.Role;
+import com.propydis.studio.dto.user.role.RoleDTO;
+import com.propydis.studio.domain.user.role.Role;
 
 public class RoleMapper {
 

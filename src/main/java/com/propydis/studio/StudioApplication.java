@@ -11,7 +11,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages ={"com.propydis.studio.infrastructure.persistence.mongodb.project.photo",
                                         "com.propydis.studio.infrastructure.persistence.mongodb.project.property",
 		                                "com.propydis.studio.infrastructure.persistence.mongodb.project.project"  })
-@EnableJpaRepositories(basePackages = "com.propydis.studio.infrastructure.persistence.mysql.user.contact")
+@EnableJpaRepositories(basePackages = {"com.propydis.studio.infrastructure.persistence.mysql.user.contact",
+                                       "com.propydis.studio.infrastructure.persistence.mysql.user.user",
+		                               "com.propydis.studio.infrastructure.persistence.mysql.user.role"})
 @SpringBootApplication
 public class StudioApplication {
 
