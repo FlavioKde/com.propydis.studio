@@ -1,9 +1,9 @@
-package com.propydis.studio.dto.mysql.mapper;
+package com.propydis.studio.shared.mapper;
 
 
-import com.propydis.studio.dto.mysql.UserCreateDTO;
-import com.propydis.studio.dto.mysql.UserDTO;
-import com.propydis.studio.domain.user.User;
+import com.propydis.studio.dto.user.role.UserCreateDTO;
+import com.propydis.studio.dto.user.user.UserDTO;
+import com.propydis.studio.domain.user.user.User;
 
 import java.util.stream.Collectors;
 

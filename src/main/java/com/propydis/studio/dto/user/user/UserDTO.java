@@ -1,5 +1,7 @@
-package com.propydis.studio.dto.mysql;
+package com.propydis.studio.dto.user.user;
 
+
+import com.propydis.studio.dto.user.role.RoleDTO;
 
 import java.util.List;
 

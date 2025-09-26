@@ -1,14 +1,16 @@
-package com.propydis.studio.service;
+package com.propydis.studio.application.user.role;
 
 import com.propydis.studio.shared.exception.exceptions.NotFoundByIdException;
-import com.propydis.studio.domain.user.Role;
-import com.propydis.studio.repository.mysql.RoleRepository;
+import com.propydis.studio.domain.user.role.Role;
+import com.propydis.studio.domain.user.role.repository.RoleRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleService {
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     public RoleService(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
@@ -40,7 +42,7 @@ public class RoleService {
         Role existing = roleRepository.findById(id)
                 .orElseThrow(() -> new NotFoundByIdException(id, "role"));
 
-        roleRepository.delete(existing);
+        roleRepository.deleteById(existing.getId());
 
 
     }

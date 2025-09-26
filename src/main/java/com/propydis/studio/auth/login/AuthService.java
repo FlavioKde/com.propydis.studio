@@ -2,7 +2,7 @@ package com.propydis.studio.auth.login;
 
 
 import com.propydis.studio.auth.jwt.JwtService;
-import com.propydis.studio.repository.mysql.UserRepository;
+import com.propydis.studio.domain.user.user.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
