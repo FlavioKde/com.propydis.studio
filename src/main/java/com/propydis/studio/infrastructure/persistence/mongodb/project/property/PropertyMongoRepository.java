@@ -41,26 +41,6 @@ public PropertyMongoRepository(PropertyDocumentRepository propertyDocumentReposi
         return propertyDocumentRepository.findById(id).map(PropertyDocumentMapper::toDomain);
     }
 
-    @Override
-    public Property update(Property property) {
-
-    PropertyDocument existing = propertyDocumentRepository.findById(property.getId())
-            .orElseThrow(() -> new NotFoundByIdException(property.getId(), "property"));
-
-    existing.setName(property.getName());
-    existing.setDescription(property.getDescription());
-    existing.setPhotoIds(property.getPhotoIds());
-    existing.setUpdatedAt(property.getUpdatedAt());
-    existing.setPropertyStatus(property.getPropertyStatus());
-    existing.setPriceValue(property.getPriceValue());
-    existing.setPriceText(property.getPriceText());
-
-    PropertyDocument updatedDocument = propertyDocumentRepository.save(existing);
-    return PropertyDocumentMapper.toDomain(updatedDocument);
-
-
-    }
-
 
     @Override
     public void deleteById(String id){

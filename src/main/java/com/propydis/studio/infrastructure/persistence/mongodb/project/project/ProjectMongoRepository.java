@@ -45,23 +45,6 @@ public class ProjectMongoRepository implements ProjectRepository {
 
 
     @Override
-    public Project update(Project project) {
-        ProjectDocument existing = projectDocumentRepository.findById(project.getId())
-                .orElseThrow(() -> new NotFoundByIdException(project.getId(), "project"));
-
-        existing.setName(project.getName());
-        existing.setDescription(project.getDescription());
-        existing.setPhotoIds(project.getPhotoIds());
-        existing.setUpdatedAt(project.getUpdatedAt());
-        existing.setProjectStatus(project.getProjectStatus());
-
-        ProjectDocument updatedDocument = projectDocumentRepository.save(existing);
-        return ProjectDocumentMapper.toDomain(updatedDocument);
-    }
-
-
-
-    @Override
     public void deleteById(String id) {
         ProjectDocument existing = projectDocumentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundByIdException(id, "project"));

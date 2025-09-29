@@ -37,19 +37,6 @@ public class ContactMysqlRepository implements ContactRepository {
             return contactEntityRepository.findAll().stream().map(ContactEntityMapper::toDomain).collect(Collectors.toList());
         }
 
-        @Override
-        public Contact update(Contact contact, Long id) {
-            ContactEntity existing = contactEntityRepository.findById(id)
-                            .orElseThrow(()-> new NotFoundByIdException(id, "contact"));
-
-            existing.setFirstName(contact.getFirstName());
-            existing.setLastName(contact.getLastName());
-            existing.setEmail(contact.getEmail());
-            existing.setPhone(contact.getPhone());
-
-            return ContactEntityMapper.toDomain(contactEntityRepository.save(existing));
-
-        }
 
         @Override
         public void deleteById(Long id) {

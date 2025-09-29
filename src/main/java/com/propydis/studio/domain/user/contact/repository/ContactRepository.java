@@ -10,7 +10,6 @@ public interface ContactRepository {
         Contact save(Contact contact);
         Optional<Contact> findById(Long id);
         List<Contact> findAll();
-        Contact update(Contact contact, Long id);
         Contact reply(Long id, String replyMessage);
         void deleteById(Long id);
 
