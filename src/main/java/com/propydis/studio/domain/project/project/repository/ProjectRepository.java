@@ -10,7 +10,6 @@ public interface ProjectRepository {
             Project save(Project project);
             List<Project> findAll();
             Optional<Project> findById(String id);
-            Project update(Project project);
             void deleteById(String id);
 
 

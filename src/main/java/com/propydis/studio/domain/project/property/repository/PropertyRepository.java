@@ -10,6 +10,5 @@ public interface PropertyRepository{
             Property save(Property property);
             Optional<Property> findById(String id);
             List<Property> findAll();
-            Property update(Property property);
             void deleteById(String id);
 }
