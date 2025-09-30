@@ -68,12 +68,17 @@ dependencies {
 	// DevTools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
+	//webSockets
+	implementation("org.springframework.boot:spring-boot-starter-websocket")
+
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.mockito:mockito-core:5.11.0")
 	testImplementation("org.mockito:mockito-junit-jupiter:5.11.0")
+
+
 
 	}
 
