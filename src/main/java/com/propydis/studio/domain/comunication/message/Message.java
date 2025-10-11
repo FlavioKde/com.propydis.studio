@@ -1,4 +1,4 @@
-package com.propydis.studio.domain.message;
+package com.propydis.studio.domain.comunication.message;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +20,10 @@ public class Message {
             this.senderId = senderId;
             this.receiverId = receiverId;
             this.chatId = chatId;
+
+        }
+
+        public Message() {
 
         }
 

@@ -60,7 +60,6 @@ public class ContactControllerTest {
 
         contact.setId(1L);
         contact.setReplyMessage("Message_Reply");
-        //contact.setCreatedAt(LocalDateTime.now());
         contact.setContactStatus(ContactStatus.NEW);
 
         Mockito.when(contactService.save(Mockito.any()))
