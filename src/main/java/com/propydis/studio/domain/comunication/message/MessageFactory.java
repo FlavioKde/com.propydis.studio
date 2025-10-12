@@ -1,6 +1,4 @@
-package com.propydis.studio.domain.comunication.message.repository;
-
-import com.propydis.studio.domain.comunication.message.Message;
+package com.propydis.studio.domain.comunication.message;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

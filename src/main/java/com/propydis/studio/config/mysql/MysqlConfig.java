@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.propydis.studio.repository.mysql")
+@EnableJpaRepositories(basePackages = "com.propydis.studio.infrastructure.persistence.mysql")
 public class MysqlConfig {
 }
